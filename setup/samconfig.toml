@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "severlesspresso-workshop-core-4"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1anrsrl2v4qr4"
+s3_prefix = "severlesspresso-workshop-core-4"
+region = "us-east-2"
+profile = "benjasl"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "AppName=\"ServerlesspressoWorkshop-4\" Service=\"core\" LogRetentionInDays=\"14\" TimeInterval=\"5\" CodeLength=\"10\" TokensPerBucket=\"10\" Source=\"awsserverlessda.serverlesspresso\""
+image_repositories = []
