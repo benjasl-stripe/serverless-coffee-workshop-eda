@@ -76,31 +76,23 @@ if (localStorage.UIstate) {
 
 // Are global vars initialized?
 app.config.globalProperties.$init = false
+console.log('Starting with: ', app.config.globalProperties)
 
-// Only init if settings are provided
-if (app.config.globalProperties.$APIurl === '' ||
-    app.config.globalProperties.$region === '' ||
-    app.config.globalProperties.$ordersAPIurl === '' ||
-    app.config.globalProperties.$c === '' ||
-    app.config.globalProperties.$poolId === '' ||
-    app.config.globalProperties.$ConfigEndpoint === '' ||
-    app.config.globalProperties.$host === '') {
-
-    try {
-      Amplify.configure({
-        Auth: {
-          region: this.$region,
-          identityPoolRegion: this.$region,
-          userPoolId: this.$poolId,
-          userPoolWebClientId: this.$host,
-          mandatorySignIn: false,
-          authenticationFlowType: 'CUSTOM_AUTH',
-        }
-      })
-    } catch (err) {
-      console.error('Error: ', err)
+// If these errors, the properties haven't been set yet.
+try {
+  Amplify.configure({
+    Auth: {
+      region: this.$region,
+      identityPoolRegion: this.$region,
+      userPoolId: this.$poolId,
+      userPoolWebClientId: this.$host,
+      mandatorySignIn: false,
+      authenticationFlowType: 'CUSTOM_AUTH',
     }
-    app.config.globalProperties.$init = true
- }
+  })
+  app.config.globalProperties.$init = true
+} catch (err) {
+  console.error('Error: ', err)
+}
 
 app.mount('#app')
