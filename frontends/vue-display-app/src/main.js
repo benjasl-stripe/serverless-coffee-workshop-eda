@@ -64,35 +64,52 @@ if (localStorage.UIstate) {
   console.log('Mounted - Local storage: ', UIstate)
 
   // Hydrating state from local cache
-  app.config.globalProperties.$APIurl = UIstate.APIurl || ''
-  app.config.globalProperties.$region = UIstate.region || ''
+  app.config.globalProperties.$region = 'us-east-2'  // UIstate.region || ''
+  app.config.globalProperties.$userPoolId = 'us-east-2_8ME6cnarR'
+  app.config.globalProperties.$userPoolWebClientId = '5i6pv7fevmlb8o01uo9vid3knd'
+  app.config.globalProperties.$poolId = 'us-east-2:5c8141d8-421b-4a57-abae-543b7623d21b'
+  app.config.globalProperties.$host = 'anput1xffmgcz-ats.iot.us-east-2.amazonaws.com'
 
-  app.config.globalProperties.$ordersAPIurl = UIstate.ordersAPIurl || ''
-  app.config.globalProperties.$APIconfigURL = UIstate.APIconfigURL || ''
-  app.config.globalProperties.$poolId = UIstate.$poolId || ''
-  app.config.globalProperties.$ConfigEndpoint = UIstate.ConfigEndpoint || '',
-  app.config.globalProperties.$host = UIstate.host || ''
+  app.config.globalProperties.$orderManagerEndpoint='https://wgp3eel343.execute-api.us-east-2.amazonaws.com/Prod'
+  app.config.globalProperties.$APIGWEndpointValidatorService = 'https://szxmyl1ki4.execute-api.us-east-2.amazonaws.com/Prod'
+  app.config.globalProperties.$APIGWEndpointConfigService = 'https://1lo0k59n5g.execute-api.us-east-2.amazonaws.com/Prod'
+  app.config.globalProperties.$ConfigEndpoint = 'https://1lo0k59n5g.execute-api.us-east-2.amazonaws.com/Prod/config'
+
+  // app.config.globalProperties.$APIconfigURL = UIstate.APIconfigURL || ''
+  // app.config.globalProperties.$poolId = UIstate.$poolId || ''
+  // app.config.globalProperties.$ConfigEndpoint = UIstate.ConfigEndpoint || '',
+  // app.config.globalProperties.$host = UIstate.host || ''
 }
 
 // Are global vars initialized?
 app.config.globalProperties.$init = false
 console.log('Starting with: ', app.config.globalProperties)
 
-// If these errors, the properties haven't been set yet.
-try {
-  Amplify.configure({
-    Auth: {
-      region: this.$region,
-      identityPoolRegion: this.$region,
-      userPoolId: this.$poolId,
-      userPoolWebClientId: this.$host,
-      mandatorySignIn: false,
-      authenticationFlowType: 'CUSTOM_AUTH',
+// Only init if settings are provided
+// if (app.config.globalProperties.$APIurl === '' ||
+//     app.config.globalProperties.$region === '' ||
+//     app.config.globalProperties.$ordersAPIurl === '' ||
+//     app.config.globalProperties.$c === '' ||
+//     app.config.globalProperties.$poolId === '' ||
+//     app.config.globalProperties.$ConfigEndpoint === '' ||
+//     app.config.globalProperties.$host === '') {
+//       console.log('Open settings')
+//   } else {
+    try {
+      Amplify.configure({
+        Auth: {
+          region: app.config.globalProperties.$region,
+          identityPoolRegion: app.config.globalProperties.$region,
+          userPoolId: app.config.globalProperties.$userPoolId,
+          userPoolWebClientId: app.config.globalProperties.$userPoolWebClientId,
+          mandatorySignIn: false,
+          authenticationFlowType: 'CUSTOM_AUTH',
+        }
+      })
+    } catch (err) {
+      console.error('Error: ', err)
     }
-  })
-  app.config.globalProperties.$init = true
-} catch (err) {
-  console.error('Error: ', err)
-}
+    app.config.globalProperties.$init = true
+//  }
 
 app.mount('#app')
