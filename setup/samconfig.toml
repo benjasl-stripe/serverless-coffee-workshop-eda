@@ -10,3 +10,4 @@ profile = "benjasl"
 capabilities = "CAPABILITY_IAM"
 parameter_overrides = "AppName=\"ServerlesspressoWorkshop-4\" Service=\"core\" LogRetentionInDays=\"14\" TimeInterval=\"5\" CodeLength=\"10\" TokensPerBucket=\"10\" Source=\"awsserverlessda.serverlesspresso\""
 image_repositories = []
+confirm_changeset = true

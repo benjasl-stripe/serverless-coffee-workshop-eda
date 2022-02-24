@@ -84,5 +84,6 @@ The order was persisted to DynamoDB, along with the Step Functions Task Token, t
 ![Execution results](../images/se-mod2-workflowStarted2.png)
 
 The Task token will be retrieved from here when the customer submits their order. It will then be use to resume the workflow.
+In the next section you will see how orders are cancelled, updated, and completed by a seperate workflow called the *OrderManager*
 
 ----------------------------------
