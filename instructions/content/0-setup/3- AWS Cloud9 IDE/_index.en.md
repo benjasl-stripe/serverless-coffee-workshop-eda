@@ -17,7 +17,7 @@ Take a few minutes now and setup your Cloud9 development environment. Cloud9 wor
 
 2. Select **Create environment**.
 
-3. Enter `theme-park-development` into **Name** and optionally provide a **Description**.
+3. Enter `serverlesspresso-development` into **Name** and optionally provide a **Description**.
 
 4. Select **Next step**.
 
@@ -47,7 +47,7 @@ You'll see output indicating your account and user information:
 {
     "Account": "123456789012",
     "UserId": "AKIAI44QH8DHBEXAMPLE",
-    "Arn": "arn:aws:iam::123456789012:user/Alice"
+    "Arn": "arn:aws:iam::123456789012:user/Roxie"
 }
 ```
 Check the current AWS Region to make sure you are running the workshop in a supported Region.
@@ -77,7 +77,7 @@ Clone the repo which will download a local copy of the instructions and code you
 
 ```console
 cd ~/environment/
-git clone https://github.com/aws-samples/aws-serverless-workshop-innovator-island ./theme-park-backend
+git clone https://github.com/aws-samples/aws-serverless-workshop-serverlesspresso ./serverlesspresso-backend
 ```
 
 ![Module 0 Cloud9 clone](../images/0-setup-clone.png)

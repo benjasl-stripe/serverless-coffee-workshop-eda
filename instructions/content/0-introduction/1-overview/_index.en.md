@@ -2,8 +2,7 @@
 title = "Overview"
 weight = 11
 +++
-
-![Serverlesspresso](/images/serverlesspresso-clear.jpg)
+[![See Serverlesspresso](/images/play.png)](https://youtu.be/M6lPZCRCsyA)
 
 ## Let's get caffeinated!
 
