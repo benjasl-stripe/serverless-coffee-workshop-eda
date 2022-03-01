@@ -18,10 +18,6 @@ const emitter = mitt()
 // Amplify imports
 import Amplify from 'aws-amplify'
 
-// Phone number handling
-import VueTelInput from 'vue3-tel-input'
-import 'vue3-tel-input/dist/vue3-tel-input.css'
-
 const app = createApp(App).use(  VuesticPlugin,{
   components: {
     VaChip: {
@@ -43,7 +39,7 @@ const app = createApp(App).use(  VuesticPlugin,{
       color:"#08c18a"
     }
   },
-}).use(VueTelInput)
+})
 app.config.globalProperties.emitter = emitter
 
 /* ===================================================
@@ -64,21 +60,19 @@ if (localStorage.UIstate) {
   console.log('Mounted - Local storage: ', UIstate)
 
   // Hydrating state from local cache
-  app.config.globalProperties.$region = 'us-east-2'  // UIstate.region || ''
-  app.config.globalProperties.$userPoolId = 'us-east-2_8ME6cnarR'
-  app.config.globalProperties.$userPoolWebClientId = '5i6pv7fevmlb8o01uo9vid3knd'
-  app.config.globalProperties.$poolId = 'us-east-2:5c8141d8-421b-4a57-abae-543b7623d21b'
-  app.config.globalProperties.$host = 'anput1xffmgcz-ats.iot.us-east-2.amazonaws.com'
+  app.config.globalProperties.$region = UIstate.region || ''
+  app.config.globalProperties.$userPoolId = UIstate.userPoolId || ''
+  app.config.globalProperties.$userPoolWebClientId = UIstate.userPoolWebClientId || ''
 
-  app.config.globalProperties.$orderManagerEndpoint='https://wgp3eel343.execute-api.us-east-2.amazonaws.com/Prod'
-  app.config.globalProperties.$APIGWEndpointValidatorService = 'https://szxmyl1ki4.execute-api.us-east-2.amazonaws.com/Prod'
-  app.config.globalProperties.$APIGWEndpointConfigService = 'https://1lo0k59n5g.execute-api.us-east-2.amazonaws.com/Prod'
-  app.config.globalProperties.$ConfigEndpoint = 'https://1lo0k59n5g.execute-api.us-east-2.amazonaws.com/Prod/config'
+    //  PoolId: Retrieve this with the CLI command: aws cognito-identity list-identity-pools --max-results 10 --region <<REGION>>
+  app.config.globalProperties.$poolId = UIstate.poolId || '' // 'YourCognitoIdentityPoolId'
+  //  IoTendpoint: Retrieve this with the CLI command: aws iot describe-endpoint --endpoint-type iot:Data-ATS --region us-west-2
+  app.config.globalProperties.$host = UIstate.host || '' // 'YourAwsIoTEndpoint', e.g. 'prefix.iot.us-east-1.amazonaws.com'
 
-  // app.config.globalProperties.$APIconfigURL = UIstate.APIconfigURL || ''
-  // app.config.globalProperties.$poolId = UIstate.$poolId || ''
-  // app.config.globalProperties.$ConfigEndpoint = UIstate.ConfigEndpoint || '',
-  // app.config.globalProperties.$host = UIstate.host || ''
+  app.config.globalProperties.$orderManagerEndpoint = UIstate.orderManagerEndpoint || ''
+  app.config.globalProperties.$APIGWEndpointValidatorService = UIstate.APIGWEndpointValidatorService || ''
+  app.config.globalProperties.$APIGWEndpointConfigService = UIstate.APIGWEndpointConfigService || ''
+  app.config.globalProperties.$ConfigEndpoint = `${app.config.globalProperties.$APIGWEndpointConfigService}/config`
 }
 
 // Are global vars initialized?
@@ -86,30 +80,40 @@ app.config.globalProperties.$init = false
 console.log('Starting with: ', app.config.globalProperties)
 
 // Only init if settings are provided
-// if (app.config.globalProperties.$APIurl === '' ||
-//     app.config.globalProperties.$region === '' ||
-//     app.config.globalProperties.$ordersAPIurl === '' ||
-//     app.config.globalProperties.$c === '' ||
-//     app.config.globalProperties.$poolId === '' ||
-//     app.config.globalProperties.$ConfigEndpoint === '' ||
-//     app.config.globalProperties.$host === '') {
-//       console.log('Open settings')
-//   } else {
-    try {
-      Amplify.configure({
-        Auth: {
-          region: app.config.globalProperties.$region,
-          identityPoolRegion: app.config.globalProperties.$region,
-          userPoolId: app.config.globalProperties.$userPoolId,
-          userPoolWebClientId: app.config.globalProperties.$userPoolWebClientId,
-          mandatorySignIn: false,
-          authenticationFlowType: 'CUSTOM_AUTH',
-        }
-      })
-    } catch (err) {
-      console.error('Error: ', err)
-    }
-    app.config.globalProperties.$init = true
-//  }
+if (app.config.globalProperties.$APIurl === '' ||
+  app.config.globalProperties.$userPoolId === '' ||
+  app.config.globalProperties.$userPoolWebClientId === '' ||
+  app.config.globalProperties.$poolId === '' ||
+  app.config.globalProperties.$host === '' ||
+  app.config.globalProperties.$orderManagerEndpoint === '' ||
+  app.config.globalProperties.$APIGWEndpointValidatorService === '' ||
+  app.config.globalProperties.$APIGWEndpointConfigService === '') {
+    console.log('Open settings')
+} else {
+  try {
+    Amplify.configure({
+      "aws_cognito_username_attributes": [
+          "EMAIL"
+      ],
+      "aws_cognito_signup_attributes": [
+          "EMAIL"
+      ],
+      "aws_cognito_mfa_configuration": "OFF",
+      Auth: {
+        region: app.config.globalProperties.$region,
+        identityPoolRegion: app.config.globalProperties.$region,
+        userPoolId: app.config.globalProperties.$userPoolId,
+        userPoolWebClientId: app.config.globalProperties.$userPoolWebClientId,
+        mandatorySignIn: false,
+        authenticationFlowType: 'USER_SRP_AUTH',
+      }
+    })
+  } catch (err) {
+    console.error('Error: ', err)
+  }
+  app.config.globalProperties.$init = true
+}
+
+console.log('Init state: ', app.config.globalProperties.$init)
 
 app.mount('#app')

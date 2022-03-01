@@ -72,7 +72,7 @@ export default {
       const jwtToken = session.getAccessToken().jwtToken
 
       try {
-        const { data } = await axios.get(`${this.$ordersAPIurl}/orders?state=COMPLETED`,
+        const { data } = await axios.get(`${this.$orderManagerEndpoint}/orders?state=COMPLETED`,
           {
             headers: { Authorization: "Bearer " + jwtToken },
           }
@@ -83,7 +83,7 @@ export default {
           order = AWSsdk.DynamoDB.Converter.unmarshall(order)
           if(order.drinkOrder){
             order.drinkOrder =  JSON.parse(order.drinkOrder)
-          } 
+          }
           if (order.drinkOrder) {
             this.orders.push({
               orderId: order.SK,

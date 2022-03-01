@@ -112,13 +112,14 @@ export default {
   methods: {
     async loadOrders() {
       console.log("loadOrders started")
+      console.log('this.$orderManagerEndpoint = ', this.$orderManagerEndpoint)
 
       // Refresh token
       const session = await Auth.currentSession()
       const jwtToken = session.getAccessToken().jwtToken
 
       try {
-        const { data } = await axios.get(`${this.$ordersAPIurl}/orders?state=CREATED`, {
+        const { data } = await axios.get(`${this.$orderManagerEndpoint}/orders?state=CREATED`, {
           headers: { Authorization: "Bearer " + jwtToken }
         })
         console.log("orders", data)
@@ -127,7 +128,7 @@ export default {
           order = AWSsdk.DynamoDB.Converter.unmarshall(order)
           if(order.drinkOrder){
             order.drinkOrder =  JSON.parse(order.drinkOrder)
-          } 
+          }
           console.log("Order:", order);
 
           this.orders.push({

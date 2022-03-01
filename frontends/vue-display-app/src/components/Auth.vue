@@ -1,57 +1,18 @@
+<script setup>
+  import { Authenticator } from '@aws-amplify/ui-vue'
+  import { Auth, Hub } from 'aws-amplify'
+  import '@aws-amplify/ui-vue/styles.css'
+</script>
+
 <template>
   <div class="row parent">
-    <div class="flex md6 lg6">
-      <va-inner-loading :loading="isLoading">
-        <va-card :bordered="false" style="margin-top: 100px;">
-          <va-card-title>Register</va-card-title>
-          <va-card-content>Enter your phone number. We will send you a text message with a one-time password.</va-card-content>
-
-          <div class="row flex">
-            <div v-show="!isCodeRequested">
-              <vue-tel-input
-                :value="phone"
-                class="phone"
-                style="margin: 20px;"
-                @validate="validatePhone">
-              </vue-tel-input>
-            </div>
-            <div class="row flex" style="margin: 20px;">
-              <va-button
-                :disabled="!isValid || isCodeRequested"
-                :rounded="false"
-                @click="getCode"
-                class="mr-2">
-                  Get code
-              </va-button>
-              <va-button
-                :disabled="isCodeRequested"
-                :rounded="false"
-                @click="resetForm"
-                class="ml-2">
-                  Reset
-              </va-button>
-
-            </div>
-          </div>
-          <div v-show="showCodeSubmit" class="row flex" style="margin: 20px;">
-            <va-input
-              style="font-size: 24px;"
-              :mask="{blocks: [6]}"
-              label="Code"
-              ref="codeInput"
-              v-model="code"
-              :error="errorMessages!=''"
-              :error-messages="errorMessages"
-            />
-            <va-button
-              :rounded="false"
-              @click="submitCode"
-              class="mt-4 mb-4">
-                Submit
-            </va-button>
-          </div>
-        </va-card>
-      </va-inner-loading>
+    <div class="flex md6 lg6 mt-4">
+      <authenticator>
+        <template v-slot="{ user, signOut }">
+          <h1>Hello {{ user.username }}!</h1>
+          <button @click="signOut">Sign Out</button>
+        </template>
+      </authenticator>
     </div>
   </div>
 </template>
@@ -63,32 +24,12 @@
 
 'use strict'
 
-import { Auth } from 'aws-amplify'
-const SMS_DELAY = 30000
 
 export default {
   name: 'Auth',
   data() {
     return {
-      phone: '',
-      isValid: false,
-      code: '',
-      isCodeRequested: false,
-      showCodeSubmit: false,
       cognitoUser: {},
-      errorMessages: '',
-      isLoading: false
-    }
-  },
-  watch: {
-    isCodeRequested (value) {
-      // console.log('isCodeRequested: ', value)
-      if (value === true) {
-        setTimeout(() => {
-          this.isCodeRequested = false
-          this.saveLocalStorage ()
-        }, SMS_DELAY)
-      }
     }
   },
   async mounted () {
@@ -107,99 +48,31 @@ export default {
       console.error ('Mounted: ', err)
     }
     this.isLoading = false
+
+    Hub.listen('auth', (data) => {
+      switch (data.payload.event) {
+        case 'signIn':
+            console.log('user signed in')
+            this.checkIfLoggedIn()
+            break
+        case 'signUp':
+            console.log('user signed up')
+            this.checkIfLoggedIn()
+            break
+        case 'signOut':
+            console.log('user signed out')
+            this.emitter.emit('authStateChanged', { loggedIn: false })
+            break
+        case 'signIn_failure':
+            console.log('user sign in failed')
+            break
+        case 'configured':
+            console.log('the Auth module is configured')
+      }
+    })
+
   },
   methods: {
-    validatePhone (info) {
-      console.log('validatePhone: ', info)
-      this.isValid = info.valid
-      this.phone = info.number
-    },
-    resetForm () {
-      this.phone = ''
-      this.code = ''
-      this.isCodeRequested = false
-      this.errorMessages = ''
-      this.cognitoUser = {}
-      this.showCodeSubmit = false
-      this.saveLocalStorage ()
-    },
-    saveLocalStorage () {
-      const UIstate = {
-        phone: this.phone
-      }
-      console.log('Saving Local storage: ', UIstate)
-
-      localStorage.UIstate = JSON.stringify(UIstate)
-      console.log('Saving: ', UIstate)
-    },
-    async getCode () {
-      this.isCodeRequested = true
-      this.showCodeSubmit = true
-      this.code = ''
-      this.errorMessages = ''
-
-      console.log('Saving: ', this.phone)
-      this.saveLocalStorage ()
-
-      // Request the code
-      await this.signUp ()
-    },
-
-    // AUTH METHODS
-    getRandomString (length) {
-      return Array(length).fill().map(()=>"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".charAt(Math.random()*62)).join("")
-    },
-    async signIn () {
-      try {
-        console.log('Signing in: ', this.phone)
-        this.cognitoUser = await Auth.signIn(this.phone)
-      } catch (err) {
-        if (err) {
-          console.log(err)
-          if (err.code === 'InvalidParameterException') {
-            console.error ('signIn error: ', err.message)
-            return
-          }
-
-          if (err.code === 'NotAuthorizedException') {
-            console.error ('signIn error: ', err.message)
-            return
-          }
-        }
-      }
-      console.log(this.cognitoUser)
-    },
-    async signUp () {
-      const params = {
-        username: this.phone,
-        phonenumber: this.phone,
-        password: this.getRandomString(30),
-        attributes: {
-          name: this.phone
-        }
-      }
-      try {
-        console.log('signUp: ', params)
-        this.cognitoUser = await Auth.signUp(params)
-        console.log(this.cognitoUser)
-      } catch (err) {
-        if (err) console.error(err)
-      }
-      await this.signIn ()
-    },
-    async submitCode () {
-      const code = this.code
-      console.log(code)
-      try {
-        const result = await Auth.sendCustomChallengeAnswer(this.cognitoUser, code)
-        console.log('Result:', code, result)
-      } catch (err) {
-        console.error ('submitCode error: ', err)
-        this.resetForm ()
-      }
-
-      await this.checkIfLoggedIn ()
-    },
     async checkIfLoggedIn () {
       const loggedIn = await this.isAuthenticated()
       console.log("checkIfLoggedIn: ", loggedIn)
@@ -214,9 +87,9 @@ export default {
           console.log('Groups: ', groups)
 
           if (!groups || !groups.includes('admin')) {
-              console.log('Not an admin - signing out')
-              this.errorMessages = "Insufficient privileges"
-              return
+            console.log('Not an admin - signing out')
+            await this.signOut()
+            return
           }
         }
         this.$nextTick(() => {
@@ -224,12 +97,11 @@ export default {
           this.emitter.emit('authStateChanged', { loggedIn: true, authData: session })
         })
       } else {
-        this.errorMessages = "Invalid code"
+        this.errorMessages = "Invalid"
       }
     },
     async signOut() {
       await Auth.signOut()
-      this.resetForm ()
       this.emitter.emit('authStateChanged', { loggedIn: false })
     },
     async isAuthenticated() {

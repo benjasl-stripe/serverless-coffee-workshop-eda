@@ -16,6 +16,9 @@
         </va-navbar-item>
       </template>
       <template #right>
+        <!-- <va-navbar-item>
+          <va-button color="primary" :rounded="false" href="/settings">Settings</va-button>
+        </va-navbar-item> -->
         <va-navbar-item>
           <va-button color="primary" :rounded="false"  @click="signOut">Sign out</va-button>
         </va-navbar-item>
@@ -52,7 +55,7 @@
                 />
               </transition>
               <p style="text-align: center; padding:5px; ">
-                The store is not taking orders right now
+                The store is not taking orders right now.
               </p>
             </div>
           </div>

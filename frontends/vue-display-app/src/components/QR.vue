@@ -6,7 +6,7 @@
       <div class="mb-2">
         <transition name="fade" class="pl-2 mr-2">
           <qrcode-vue :size="getQRwidth()" :value="last_code" />
-         
+
         </transition>
          <p>{{last_code}}</p>
         <!-- <p v-show="availableTokens>0">Code is <code>{{ last_code }}</code> - expires in {{ getSeconds() }} seconds.</p> -->
@@ -143,7 +143,7 @@ export default {
       }
 
       try {
-        const { data } = await axios.get(`${this.$APIurl}/qr-code`, { headers: { Authorization: 'Bearer ' + jwtToken }})
+        const { data } = await axios.get(`${this.$APIGWEndpointValidatorService}/qr-code`, { headers: { Authorization: 'Bearer ' + jwtToken }})
         console.log(data)
 
         this.end_ts = data.bucket.end_ts

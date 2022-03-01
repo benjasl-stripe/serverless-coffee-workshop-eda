@@ -111,55 +111,19 @@ Resources:
       ServiceToken: !GetAtt GetIoTEndpointFunction.Arn
 
 ##########################################
-# Custom auth flow Lambda functions      #
-##########################################
-
-  DefineAuthChallenge:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ../backends/0-core/code/cognito-triggers/
-      Handler: define-auth-challenge.handler
-      Runtime: nodejs14.x
-
-  CreateAuthChallenge:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ../backends/0-core/code/cognito-triggers/
-      Handler: create-auth-challenge.handler
-      Runtime: nodejs14.x
-      Policies:
-        - Version: "2012-10-17"
-          Statement:
-            - Effect: Allow
-              Action:
-                - mobiletargeting:*
-                - sns:*
-              Resource: "*"
-
-  VerifyAuthChallengeResponse:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ../backends/0-core/code/cognito-triggers/
-      Handler: verify-auth-challenge-response.handler
-      Runtime: nodejs14.x
-
-  PreSignUp:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ../backends/0-core/code/cognito-triggers/
-      Handler: pre-sign-up.handler
-      Runtime: nodejs14.x
-
-##########################################
 # Cognito Resources                      #
 ##########################################
   UserPool:
     Type: "AWS::Cognito::UserPool"
     Properties:
       UserPoolName: ServerlesspressoUserPool
+      AutoVerifiedAttributes:
+      - email
+      EmailVerificationMessage: "Here is your Serverlesspresso workshop verification code: {####}."
+      EmailVerificationSubject: "Serverlesspresso workshop code"
       MfaConfiguration: "OFF"
       Schema:
-        - Name: phone_number
+        - Name: email
           AttributeDataType: String
           Mutable: false
           Required: true
@@ -170,53 +134,14 @@ Resources:
           RequireNumbers: false
           RequireSymbols: false
           RequireUppercase: false
-      UsernameAttributes:
-        - phone_number
-      LambdaConfig:
-        CreateAuthChallenge: !GetAtt CreateAuthChallenge.Arn
-        DefineAuthChallenge: !GetAtt DefineAuthChallenge.Arn
-        PreSignUp: !GetAtt PreSignUp.Arn
-        VerifyAuthChallengeResponse: !GetAtt VerifyAuthChallengeResponse.Arn
-
+      # UsernameAttributes:
+      #   - phone_number
 
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
-    Properties: 
-      AllowedOAuthFlows: 
-        - "implicit"
-      AllowedOAuthScopes: 
-        - "aws.cognito.signin.user.admin"
-        - "openid"
+    Properties:
+      GenerateSecret: false
       UserPoolId: !Ref UserPool
-
-  DefineAuthChallengeInvocationPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      Action: lambda:InvokeFunction
-      FunctionName: !GetAtt DefineAuthChallenge.Arn
-      Principal: cognito-idp.amazonaws.com
-      SourceArn: !GetAtt UserPool.Arn
-  CreateAuthChallengeInvocationPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      Action: lambda:InvokeFunction
-      FunctionName: !GetAtt CreateAuthChallenge.Arn
-      Principal: cognito-idp.amazonaws.com
-      SourceArn: !GetAtt UserPool.Arn
-  VerifyAuthChallengeResponseInvocationPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      Action: lambda:InvokeFunction
-      FunctionName: !GetAtt VerifyAuthChallengeResponse.Arn
-      Principal: cognito-idp.amazonaws.com
-      SourceArn: !GetAtt UserPool.Arn
-  PreSignUpInvocationPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      Action: lambda:InvokeFunction
-      FunctionName: !GetAtt PreSignUp.Arn
-      Principal: cognito-idp.amazonaws.com
-      SourceArn: !GetAtt UserPool.Arn
 
   UserPoolParameter:
     Type: "AWS::SSM::Parameter"
@@ -225,16 +150,6 @@ Resources:
       Description: UserPool ID
       Type: String
       Value: !Ref UserPool
-
-  # Creates a User Pool Client to be used by the identity pool
-  UserPoolClient:
-    Type: "AWS::Cognito::UserPoolClient"
-    Properties:
-      ClientName: ServerlesspressoUserPoolClient
-      GenerateSecret: false
-      UserPoolId: !Ref UserPool
-      ExplicitAuthFlows:
-        - CUSTOM_AUTH_FLOW_ONLY
 
   UserPoolClientParameter:
     Type: "AWS::SSM::Parameter"
@@ -340,7 +255,6 @@ Resources:
         authenticated: !GetAtt CognitoAuthorizedRole.Arn
         unauthenticated: !GetAtt CognitoUnAuthorizedRole.Arn
 
-  
   CountingTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -352,7 +266,6 @@ Resources:
       - AttributeName: PK
         KeyType: HASH
       BillingMode: PAY_PER_REQUEST
-
 
 ##########################################
 # Config service                         #
@@ -369,8 +282,8 @@ Resources:
         KeyType: HASH
       BillingMode: PAY_PER_REQUEST
       StreamSpecification:
-        StreamViewType: NEW_AND_OLD_IMAGES       
-  
+        StreamViewType: NEW_AND_OLD_IMAGES
+
   RESTApConfigService:
     Type: AWS::Serverless::Api
     Properties:
@@ -380,7 +293,7 @@ Resources:
           Name: 'AWS::Include'
           Parameters:
             Location: '../backends/2-config-service/RestAPIs/api.yaml'
-  
+
   ConfigChangedFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -388,7 +301,7 @@ Resources:
       Handler: configChanged.handler
       Runtime: nodejs14.x
       Timeout: 15
-      MemorySize: 128 
+      MemorySize: 128
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ConfigTable
@@ -408,14 +321,14 @@ Resources:
 
 # GetConfigFunction:
 #  Retries all items in the config table
-#  eg. GET /config 
+#  eg. GET /config
 
 # GetAdminConfigFunction:
 #  Retries all items in the config table
 #  eg. GET /admin-config
 
 
-  
+
 ##########################################################################
 #   Config service API Role                                                #
 ##########################################################################
@@ -437,15 +350,15 @@ Resources:
           Version: 2012-10-17
           Statement:
             - Effect: "Allow"
-              Action: 
+              Action:
               - dynamodb:Scan
               - dynamodb:GetItem
               - dynamodb:UpdateItem
               Resource: !GetAtt ConfigTable.Arn
             - Effect: "Allow"
-              Action: 
+              Action:
               - dynamodb:Query
-              Resource: 
+              Resource:
                 Fn::Sub:
                 - ${tableArn}${index}
                 - {tableArn: !GetAtt ConfigTable.Arn, index: "/index/*"}
@@ -487,9 +400,9 @@ Resources:
             RestApiId: !Ref RESTApiValidatorService
             Path: /qr-code
             Method: get
-            Auth: 
+            Auth:
               Authorizer: MyCognitoAuthorizor
-              AuthorizationScopes: 
+              AuthorizationScopes:
                 - aws.cognito.signin.user.admin
 
   VerifyQRcodeFunction:
@@ -521,9 +434,9 @@ Resources:
             RestApiId: !Ref RESTApiValidatorService
             Path: /qr-code
             Method: POST
-            Auth: 
+            Auth:
               Authorizer: MyCognitoAuthorizor
-              AuthorizationScopes: 
+              AuthorizationScopes:
                 - aws.cognito.signin.user.admin
 
   RESTApiValidatorService:
@@ -544,7 +457,7 @@ Resources:
             UserPoolArn: !GetAtt UserPool.Arn
 
 #   Validator  API Role  #
-              
+
   ## DynamoDB table
   ValidatorTable:
     Type: AWS::DynamoDB::Table
@@ -581,7 +494,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref ConfigTable
         - DynamoDBCrudPolicy:
-            TableName: !Ref CountingTable                 
+            TableName: !Ref CountingTable
 
    #Triggers Lambda function after stack creation
   DeploymentCustomResourcePrefil:
@@ -627,7 +540,7 @@ Resources:
       Handler: app.handler
       Runtime: nodejs14.x
       Timeout: 20
-      MemorySize: 128  
+      MemorySize: 128
 
   GetOrderByIdFunction:
     Type: AWS::Serverless::Function
@@ -636,7 +549,7 @@ Resources:
       Handler: app.handler
       Runtime: nodejs14.x
       Timeout: 15
-      MemorySize: 128 
+      MemorySize: 128
 
   WorkFlowStarted:
     Type: AWS::Serverless::Function
@@ -645,7 +558,7 @@ Resources:
       Handler: app.handler
       Runtime: nodejs14.x
       Timeout: 15
-      MemorySize: 128 
+      MemorySize: 128
       Environment:
         Variables:
           TableName: !Ref OrderTable
@@ -660,7 +573,7 @@ Resources:
       Handler: app.handler
       Runtime: nodejs14.x
       Timeout: 15
-      MemorySize: 128 
+      MemorySize: 128
       Environment:
         Variables:
           TableName: !Ref OrderTable
@@ -767,17 +680,17 @@ Resources:
           Version: 2012-10-17
           Statement:
             - Effect: "Allow"
-              Action: 
+              Action:
               - states:StartExecution
               Resource: !GetAtt OrderManagerStateMachine.Arn
             - Effect: "Allow"
-              Action: 
+              Action:
               - dynamodb:GetItem
               Resource: !GetAtt OrderTable.Arn
             - Effect: "Allow"
-              Action: 
+              Action:
               - dynamodb:Query
-              Resource: 
+              Resource:
                 Fn::Sub:
                 - ${tableArn}${index}
                 - {tableArn: !GetAtt OrderTable.Arn, index: "/index/*"}
@@ -816,27 +729,27 @@ Resources:
 ##########################################
 # Order Processor IAM ROLE               #
 ##########################################
-  OrderProcessorRole: 
+  OrderProcessorRole:
     Type: "AWS::IAM::Role"
-    Properties: 
-      AssumeRolePolicyDocument: 
+    Properties:
+      AssumeRolePolicyDocument:
         Version: "2012-10-17"
-        Statement: 
-          - 
+        Statement:
+          -
             Effect: "Allow"
-            Principal: 
-              Service: 
+            Principal:
+              Service:
                 - "states.amazonaws.com"
-            Action: 
+            Action:
               - "sts:AssumeRole"
       Path: "/"
-  RolePolicies: 
+  RolePolicies:
     Type: "AWS::IAM::Policy"
-    Properties: 
+    Properties:
       PolicyName: "orderProcessorWFPolicy"
-      PolicyDocument: 
+      PolicyDocument:
         Version: "2012-10-17"
-        Statement: 
+        Statement:
           - Effect: "Allow"
             Action: "events:PutEvents"
             Resource: !GetAtt ServerlesspressoEventBus.Arn
@@ -849,7 +762,7 @@ Resources:
           - Effect: "Allow"
             Action: "states:ListExecutions"
             Resource: !Join [ "", [ "arn:aws:states:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":stateMachine:", "*"] ]
-      Roles: 
+      Roles:
         - Ref: "OrderProcessorRole"
 
 ##########################################
@@ -866,7 +779,7 @@ Outputs:
   RESTApiForConfigService:
     Description: "API Prod stage endpoint"
     Value: !Sub "https://${RESTApConfigService}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
-  
+
   RESTApiForValidatorService:
     Description: "API Prod stage endpoint"
     Value: !Sub "https://${RESTApiValidatorService}.execute-api.${AWS::Region}.amazonaws.com/Prod/"

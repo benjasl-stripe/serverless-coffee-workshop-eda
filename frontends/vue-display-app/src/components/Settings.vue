@@ -3,7 +3,7 @@
     <div class="flex md6 lg6">
         <va-card :bordered="false" style="margin-top: 20px;">
           <va-card-title>Add your backend settings</va-card-title>
-          <va-card-content>Enter the environment variables and stack parameters from your backend.</va-card-content>
+          <va-card-content>This hosted UI will connect to the backend stack you deploy in the workshop. Enter the environment variables and stack parameters from your backend.</va-card-content>
 
           <!-- Fields -->
           <div class="row flex" style="margin: 20px;">
@@ -16,36 +16,50 @@
           <div class="row flex" style="margin: 20px;">
             <va-input
               style="font-size: 24px;"
-              label="API URL"
-              v-model="APIurl"
+              label="userPoolId (e.g. us-east-1_ABcDEFgH2)"
+              v-model="userPoolId"
             />
           </div>
           <div class="row flex" style="margin: 20px;">
             <va-input
               style="font-size: 24px;"
-              label="Config URL"
-              v-model="ordersAPIurl"
+              label="userPoolWebClientId (e.g. 123a456bcde789fghi012jkl)"
+              v-model="userPoolWebClientId"
             />
           </div>
           <div class="row flex" style="margin: 20px;">
             <va-input
               style="font-size: 24px;"
-              label="Host"
+              label="poolId (e.g. us-east-1:abcd1234-abcd-abcd-a123-abc123abc12)"
+              v-model="poolId"
+            />
+          </div>
+          <div class="row flex" style="margin: 20px;">
+            <va-input
+              style="font-size: 24px;"
+              label="Host (e.g.a1bc2c45d6fgh7-ats.iot.us-east-1.amazonaws.com)"
               v-model="host"
             />
           </div>
           <div class="row flex" style="margin: 20px;">
             <va-input
               style="font-size: 24px;"
-              label="Config endpoint"
-              v-model="ConfigEndpoint"
+              label="orderManagerEndpoint"
+              v-model="orderManagerEndpoint"
             />
           </div>
           <div class="row flex" style="margin: 20px;">
             <va-input
               style="font-size: 24px;"
-              label="User Pool Client Id"
-              v-model="poolId"
+              label="APIGWEndpointValidatorService"
+              v-model="APIGWEndpointValidatorService"
+            />
+          </div>
+          <div class="row flex" style="margin: 20px;">
+            <va-input
+              style="font-size: 24px;"
+              label="APIGWEndpointConfigService"
+              v-model="APIGWEndpointConfigService"
             />
           </div>
 
@@ -76,38 +90,41 @@ export default {
   name: 'Auth',
   data() {
     return {
-      APIurl: '',
       region: '',
-      ordersAPIurl: '',
+      userPoolId: '',
+      userPoolWebClientId: '',
       poolId: '',
-      APIconfigURL: '',
-      ConfigEndpoint: '',
-      host: ''
+      host: '',
+      orderManagerEndpoint: '',
+      APIGWEndpointValidatorService : '',
+      APIGWEndpointConfigService: ''
     }
   },
   async mounted () {
     if (localStorage.UIstate) {
       const UIstate = JSON.parse(localStorage.UIstate)
       console.log('Mounted - Local storage: ', UIstate)
-      this.APIurl = UIstate.APIurl || '',
-      this.region = UIstate.region || '',
-      this.ordersAPIurl = UIstate.ordersAPIurl || '',
-      this.poolId = UIstate.poolId || '',
-      this.APIconfigURL = UIstate.APIconfigURL || '',
-      this.ConfigEndpoint = UIstate.ConfigEndpoint || '',
+      this.region = UIstate.region || ''
+      this.userPoolId = UIstate.userPoolId || ''
+      this.userPoolWebClientId = UIstate.userPoolWebClientId || ''
+      this.poolId = UIstate.poolId || ''
       this.host = UIstate.host || ''
+      this.orderManagerEndpoint = UIstate.orderManagerEndpoint || ''
+      this.APIGWEndpointValidatorService = UIstate.APIGWEndpointValidatorService || ''
+      this.APIGWEndpointConfigService = UIstate.APIGWEndpointConfigService || ''
     }
   },
   methods: {
     saveLocalStorage () {
       const UIstate = {
-        APIurl: this.APIurl,
         region: this.region,
-        ordersAPIurl: this.ordersAPIurl,
+        userPoolId: this.userPoolId,
+        userPoolWebClientId: this.userPoolWebClientId,
         poolId: this.poolId,
-        APIconfigURL: this.APIconfigURL,
-        ConfigEndpoint: this.ConfigEndpoint,
-        host: this.host
+        host: this.host,
+        orderManagerEndpoint: this.orderManagerEndpoint,
+        APIGWEndpointValidatorService : this.APIGWEndpointValidatorService,
+        APIGWEndpointConfigService: this.APIGWEndpointConfigService,
       }
       console.log('Saving Local storage: ', UIstate)
 
