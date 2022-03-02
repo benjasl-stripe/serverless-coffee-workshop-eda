@@ -16,9 +16,9 @@
         </va-navbar-item>
       </template>
       <template #right>
-        <!-- <va-navbar-item>
-          <va-button color="primary" :rounded="false" href="/settings">Settings</va-button>
-        </va-navbar-item> -->
+        <va-navbar-item>
+          <va-button color="primary" :rounded="false" @click="clearSettings">Clear settings</va-button>
+        </va-navbar-item>
         <va-navbar-item>
           <va-button color="primary" :rounded="false"  @click="signOut">Sign out</va-button>
         </va-navbar-item>
@@ -176,6 +176,22 @@ export default {
     },
     signOut () {
       this.emitter.emit('signOut')
+    },
+    clearSettings () {
+      const UIstate = {
+        region: '',
+        userPoolId: '',
+        userPoolWebClientId: '',
+        poolId: '',
+        host: '',
+        orderManagerEndpoint: '',
+        APIGWEndpointValidatorService : '',
+        APIGWEndpointConfigService: ''
+      }
+      localStorage.UIstate = JSON.stringify(UIstate)
+      console.log('Clearing local storage: ', UIstate)
+      // Reload page
+      window.location.reload()
     }
   }
 }
