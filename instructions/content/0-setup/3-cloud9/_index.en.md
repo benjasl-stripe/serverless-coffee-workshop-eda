@@ -29,13 +29,13 @@ Take a few minutes now and setup your Cloud9 development environment. Cloud9 wor
 
 7. Once ready, your IDE will open to a welcome screen. Below that, you should see a terminal prompt. Close the *Welcome* tab and drag up the terminal window to give yourself more space to work in.
 
-![Cloud9](../images/0-setup-cloud9.png)
+![Cloud9](../images/setup5.png)
 
 You can run AWS CLI commands in here just like you would on your local computer. Remember for this workshop to run all commands within the Cloud9 terminal window instead of your local computer.
 
 Keep your AWS Cloud9 IDE opened in a browser tab throughout this workshop.
 
-Verify that your user is logged in by running the command `aws sts get-caller-identity`. Copy and paste the command into the Cloud9 terminal window.
+8. Verify that your user is logged in by running the command `aws sts get-caller-identity`. Copy and paste the command into the Cloud9 terminal window.
 
 ```console
 aws sts get-caller-identity
@@ -50,7 +50,7 @@ You'll see output indicating your account and user information:
     "Arn": "arn:aws:iam::123456789012:user/Roxie"
 }
 ```
-Check the current AWS Region to make sure you are running the workshop in a supported Region.
+9. Check the current AWS Region to make sure you are running the workshop in a supported Region.
 
 Run these commands in the Cloud9 terminal window:
 ```bash
@@ -62,31 +62,12 @@ else
     /bin/echo -e "\e[1;32m'$AWS_REGION' is a supported AWS Region\e[0m"
 fi
 ```
-
 Make sure the response confirms your Region is supported.
 
 ![Module 0 Region check](../images/0-setup-region-check.png)
 
-## Cloning the GitHub repository ##
+10. Next, install JQ to provide formatting for JSON in the console:
 
-### Step-by-step instructions ###
-
-Clone the repo which will download a local copy of the instructions and code you will use to build the backend portion of the workshop.
-
-1. Run these commands in the Cloud9 terminal window:
-
-```console
-cd ~/environment/
-git clone https://github.com/aws-samples/aws-serverless-workshop-serverlesspresso ./serverlesspresso-backend
-```
-
-![Module 0 Cloud9 clone](../images/0-setup-clone.png)
-
-2. Within the Cloud9 file browser on the left hand side you can see the backend files have been downloaded.
-
-![Module 0 Cloud9 backend files](../images/module0-cloud9backendfiles.png)
-
-3. Next, install JQ to provide formatting for JSON in the console:
 ```
 sudo yum install jq -y
 ```

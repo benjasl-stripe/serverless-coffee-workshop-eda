@@ -18,9 +18,6 @@ Amazon DynamoDB | $0.01 | Free
 Amazon EventBridge | $0.01 | Free
 AWS IoT Core | $0.01 | Free
 AWS Lambda | $0.01 | Free
-Amazon SNS* | $7.98 | $7.98
 AWS Step Functions | $0.29 | Free
 
-In this example, the Amazon SNS cost includes the cost of 1,000 SMS messages to global cellular numbers.
-
-You are using an account provided by AWS so there are no AWS costs for you in this case.
+Note that these estimates are only a guide.
