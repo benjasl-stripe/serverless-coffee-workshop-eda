@@ -138,7 +138,7 @@ The workflow has emitted an event indicating that the shop is unavailable. This 
 
 ## 2. Testing the workflow with excess orders
 
-
+While Step Functions can scale to ten of thousands of current executions, the coffee shop is configured to only handle up to 20 concurrent orders. The workflow rejects any new orders until there are less than 20 orders. In this section, you will test this by adding 21 orders.
 
 ### Step-by-step instructions ##
 
@@ -151,3 +151,41 @@ The workflow has emitted an event indicating that the shop is unavailable. This 
 ```
 aws stepfunctions start-execution --state-machine-arn YOUR_STATE_MACHINE_ARN --input "{\"detail\":{\"orderId\":\"1\",\"userId\":\"testuser\"}}"
 ```
+
+4. Run the same command 20 more times. The capacity configured for the shop is 20. On the 21st execution, the capacity check in the workflow will fail.
+
+5. In the state machine view in the console, the *Graph inspector* shows the workflow path taken as a result of capacity being unavailable:
+
+![Store is closed workflow](../images/se-mod1-testing3.png)
+
+## 2. Testing timed out orders
+
+When you created the workflow, you added two transitions that wait for callbacks. These allow time for the customer to submit their order details, or the barista to make the drinks. The customer has 5 minutes to complete this step, and the barista has 15 minutes.
+
+In this section, you will see what happens when a timeout occurs, uses the executions you started in the previous step.
+
+### Step-by-step instructions ##
+
+1. Go to the Step Functions console. From the AWS Management Console, select *Services* then select Step Functions under *Application Integration*. **Make sure your region is correct**.
+
+2. From the left-hand menu, select *State machine* and choose **OrderProcessorWorkflow** from the list.
+
+3. Wait until 5 minutes has elapsed since you started the execution list. You will see that the executions that were running are now in a *Failed* state.
+
+![Timed out executions](../images/se-mod1-testing5.png)
+
+4. Choose the first failed execution in the list. The *Graph inspector* shows the state transition *Emit - Workflow Started TT* in orange, directing to the *Customer timeout* state. Selec the *Step output* tab to see the error and the cause.
+
+![Execution detail](../images/se-mod1-testing6.png)
+
+### Recap
+
+* You tested how the workflow responds, depending on if the store open or closed.
+* You tested the store capacity feature by exceeding the allowed number of executions.
+* You verified that incomplete executions timeout after 5 minutes.
+
+Congratulations, you've now configured the workflow for the application!
+
+### Next steps
+
+Next, you will set up and configure events that allow other microservices to react to changes in this workflow.

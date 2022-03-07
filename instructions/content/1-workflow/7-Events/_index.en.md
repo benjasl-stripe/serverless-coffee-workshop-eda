@@ -5,9 +5,9 @@ weight = 17
 
 ## Overview
 
-* You will modify the workflow to emit an event if the shop is not ready to receive an order.
-* You will also add an event once the order is finished.
 * For timeouts, you will change the workflow to emit information about order timeouts.
+* You will also add an event once the order is finished.
+* You will modify the workflow to emit an event if the shop is not ready to receive an order.
 * You will test the new workflow and see the input and output payloads.
 
 After this section, you will have a workflow that emits several new events.
@@ -127,3 +127,11 @@ In this section, you update the EventBridge PutEvents state that was created ear
 3. Choose **Apply and exit**. In the Edit page, choose **Save**.
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait22.png)
+
+### Recap
+
+- In this section, you configured the workflow to emit events for timeouts, order completion, or if the store is not ready to receive orders because it's closed.
+
+### Next steps
+
+Next, you'll test the workflow to see how the execution path changes depending on the shop state and barista capacity.

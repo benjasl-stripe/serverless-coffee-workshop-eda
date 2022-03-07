@@ -3,7 +3,7 @@ CanonifyURLs=true
 languageCode = "en-US"
 defaultContentLanguage = "en"
 
-title = "Innovator Island"
+title = "Serverlesspresso Workshop"
 theme = "learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
@@ -14,8 +14,8 @@ pygmentsCodeFences = true
 pygmentsStyle = "monokai"
 
 [params]
-  description = "Innovator Island workshop"
-  author = "James Beswick"
+  description = "Serverlesspresso workshop"
+  author = "Ben Smith (https://twitter.com/benjamin_l_s) & James Beswick (https://twitter.com/jbesw)"
   hashCode = "None"
   disableBreadcrumb = false
   disableNextPrev = false
@@ -35,6 +35,6 @@ hrefTargetBlank = true
 
 [Languages]
 [Languages.en]
-title = "Innovator Island"
+title = "Serverlesspresso"
 weight = 1
 languageName = "English"
