@@ -1,5 +1,5 @@
 +++
-title = "Bug/feature request"
+title = "Bug/feature request - TODO"
 chapter = true
 weight = 92
 +++
@@ -10,7 +10,3 @@ If you have an idea for a module or feature in this workshop, or you have found 
 
 {{% button href="https://github.com/aws-samples/aws-serverless-workshop-innovator-island/issues/new?assignees=&labels=&template=workshop-feature-request.md&title=" icon="fas fa-lightbulb" %}}Request a feature{{% /button %}}
 {{% button href="https://github.com/aws-samples/aws-serverless-workshop-innovator-island/issues/new?assignees=&labels=&template=bug_report.md&title=" icon="fas fa-bug" %}}Report an issue{{% /button %}}
-
-
-
-
