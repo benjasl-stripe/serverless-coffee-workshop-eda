@@ -104,7 +104,7 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
       "Type": "Task",
       "Next": "Is capacity available?",
       "Parameters": {
-        "StateMachineArn": "arn:aws:states:us-east-2:468083054740:stateMachine:OrderProcessorWorkflow",
+        "StateMachineArn": "YOUR_STATE_MACHINE_ARN",
         "MaxResults": 100,
         "StatusFilter": "RUNNING"
       },
@@ -191,3 +191,13 @@ In this section, you will test the changes to the workflow.
 3. Choose the *Step output* on the right side to see the output path for the choice state. The JSON output shows an Order attribute with a Payload containing an orderNumber of 1.
 
 4. Choose **Start execution** again and repeat steps 2 and 3. The orderNumber is now 2. Each time you run start another execution, the order number is incremented.
+
+### Recap
+
+- In this section, you add a state transition that assigns a unique, incrementing order number to the execution.
+- This increments a value in the configuration DynamoDB table and appends the result in the output payload.
+- You tested this new feature in the console to see how the order ID increments with each execution.
+
+### Next steps
+
+Next, you'll add a wait condition to the workflow, to wait for the customer to submit their order.

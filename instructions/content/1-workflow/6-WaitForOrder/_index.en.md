@@ -187,3 +187,13 @@ aws stepfunctions send-task-success  --task-output '{"orderId":1}' --task-token 
 
 The console shows that the execution is now finished for the workflow.
 ![Execution results](../images/se-mod1-wait14.png)
+
+### Recap
+
+- In this section, you added state transitions that wait for a callback token before continues. This allow the workflow to wait for the customer to place the order, and for the barista to make the drinks.
+- You used the heartbeat attribute to set timeout values for each of these wait conditions.
+- You tested this new feature in the console and saw how the executed waited. You then used a CLI command to return the callback token to make the execution continue.
+
+### Next steps
+
+Next, you'll modify the workflow to emit events when important things happen.

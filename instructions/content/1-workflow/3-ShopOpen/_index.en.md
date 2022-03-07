@@ -12,7 +12,7 @@ After this section, you will have a workflow that runs based if the shop is open
 
 ## Reset the Step Functions workflow
 
-Remove the pass state from the workflow.
+First, remove the pass state from the workflow that you added in the previous section.
 
 ### Step-by-step instructions ##
 
@@ -165,3 +165,12 @@ In this section, you will test the new workflow.
 ![Execution results](../images/se-mod1-open16.png)
 
 3. Choose the *Step input* on the right side to see the input path for the choice state. In this case, the `storeOpen` attribute is TRUE, causing the choice state to choose the Pass state.
+
+### Recap
+
+- In this section, you created the first choice state in the workflow. This uses an item from a DynamoDB table to determine if the shop is open.
+- You tested this in the console and saw how a Boolean value in the configuration change the path of the workflow.
+
+### Next steps
+
+Next, you'll check store capacity before allowing the order to continue.

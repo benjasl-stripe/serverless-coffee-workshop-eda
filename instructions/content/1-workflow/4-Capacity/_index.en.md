@@ -13,7 +13,7 @@ After this section, you will have a workflow that runs if there is capacity avai
 
 ## Listing the active executions of the workflow
 
-In this section, you use an AWS SDK integration in Step Functions to query the service..
+In this section, you use an AWS SDK integration in Step Functions to query the service.
 
 ### Step-by-step instructions ##
 
@@ -89,7 +89,7 @@ The workflow must branch logic depending on the value returned by the ListExecut
       "Type": "Task",
       "Resource": "arn:aws:states:::dynamodb:getItem",
       "Parameters": {
-        "TableName": "severlesspresso-workshop-core-2-ConfigTable-PLYSSLC9MLXY",
+        "TableName": "serverlesspresso-config-table",
         "Key": {
           "PK": {
             "S": "config"
@@ -116,7 +116,7 @@ The workflow must branch logic depending on the value returned by the ListExecut
       "Type": "Task",
       "Next": "Is capacity available?",
       "Parameters": {
-        "StateMachineArn": "arn:aws:states:ca-central-1:468083054740:stateMachine:sfnOrderProcessor",
+        "StateMachineArn": "YOUR_STATE_MACHINE_ARN",
         "MaxResults": 100,
         "StatusFilter": "RUNNING"
       },
@@ -171,3 +171,13 @@ In this section, you will test the changes to the workflow.
 ![Execution results](../images/se-mod1-capacity11.png)
 
 3. Choose the *Step output* on the right side to see the output path for the choice state. In this, the Executions array in the isCapacityAvailable attribute is empty. This means there are no active executions, so there is capacity available, causing the workflow to go to the pass state.
+
+### Recap
+
+- In this section, you add another choice state to the workflow.
+- This checks the amount of capacity available. In this example, the shop is at capacity when there are 20 orders in the queue.
+- You tested this in the console and saw how the execution flows now with two choice states.
+
+### Next steps
+
+Next, you'll add a human-readable order number to each execution.

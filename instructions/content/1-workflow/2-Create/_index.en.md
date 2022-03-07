@@ -88,3 +88,13 @@ In this section, you will test the new workflow.
 (3) The *Execution event history* shows each event during the execution and the cumulative elapsed time. Every workflow has an ExecutionStarted event. This simple workflow with one pass state has a PassStateEntered and PassStateExited event. Click the triangle next to each event to show the input and output payload for each event.
 
 ![Event history](../images/se-mod1-create10.png)
+
+### Recap
+
+- In this section, you created the application's workflow using the Workflow Studio.
+- You walked through the different user interfaces you will use for the rest of this module.
+- You tested the simple workflow from the console and saw how to use the execution event history to see the input and output payloads that are passed between states.
+
+### Next steps
+
+Next, you'll start building functionality into the workflow.

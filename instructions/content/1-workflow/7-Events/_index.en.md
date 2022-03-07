@@ -6,7 +6,7 @@ weight = 17
 ## Overview
 
 * You will modify the workflow to emit an event if the shop is not ready to receive an order.
-* You will also add an event once the order is finished
+* You will also add an event once the order is finished.
 * For timeouts, you will change the workflow to emit information about order timeouts.
 * You will test the new workflow and see the input and output payloads.
 
@@ -32,6 +32,7 @@ In this section, you add an EventBridge PutEvents state that emits an event if e
 
 5. With the state selected, the attribute panel on the right shows the configuration for this state. In the *Configuration tab*:
 - For *State name*, enter **Emit - error timeout**.
+- Ensure Wait for callback is **unchecked**.
 - For *API Parameters*, paste the following JSON:
 
 ```
@@ -70,7 +71,7 @@ In this section, you add an EventBridge PutEvents state that emits an event if t
 
 2. With the state selected, the attribute panel on the right shows the configuration for this state. In the *Configuration tab*:
 - For *State name*, enter **Emit - order finished**.
-- Ensure *Wait for callback* is unchecked.
+- Ensure *Wait for callback* is **unchecked**.
 - For *API Parameters*, paste the following JSON:
 
 ```
@@ -103,7 +104,7 @@ In this section, you update the EventBridge PutEvents state that was created ear
 
 2. With the state selected, the attribute panel on the right shows the configuration for this state. In the *Configuration tab*:
 - For *State name*, enter **Emit - Shop not ready**.
-- For *Wait for callback*, check this box.
+- For *Wait for callback*, **uncheck** this box.
 - For *API Parameters*, paste the following JSON:
 
 ```
