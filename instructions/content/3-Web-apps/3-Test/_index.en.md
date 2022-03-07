@@ -1,9 +1,9 @@
 +++
-title = "Test the feature"
+title = "End-to-end test"
 weight = 14
 +++
 
-It's time to complete a full end-to-end test with the front-end application using your smartphone - this step requires the use of an iPhone or Android device. 
+It's time to complete a full end-to-end test with the front-end application using your smartphone - this step requires the use of an iPhone or Android device.
 
 ## If you are in an AWS workshop
 
@@ -19,7 +19,7 @@ In the workshop room, there are a number of physical greenscreens. Find an avail
 
 If you do not have access to a green screen, you can use the sample image provided in the repo.
 
-1. Navigate back to your Cloud9 instance, and locate `3-photos/green-screen-test.jpg`. 
+1. Navigate back to your Cloud9 instance, and locate `3-photos/green-screen-test.jpg`.
 2. Right click on this image, and select *Download*.
 3. You can now use this image in place of creating your own.
 

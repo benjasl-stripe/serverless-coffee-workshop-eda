@@ -5,7 +5,7 @@ weight = 13
 pre = "<b>3. </b>"
 +++
 
-Time to configure the front end applicaitons.
+Time to configure the front end applications.
 * Log in using a valid QR code
 * Submit an order
 * Progress an order from start to completion
