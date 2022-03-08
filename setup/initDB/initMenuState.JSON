@@ -109,7 +109,7 @@
         "S": "config"
       },
       "storeOpen": {
-        "BOOL": false
+        "BOOL": true
       },
       "maxOrdersPerUser": {
         "N": "1"

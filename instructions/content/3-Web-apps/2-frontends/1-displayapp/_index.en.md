@@ -20,7 +20,7 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 ### Step-by-step instructions ###
 
-1. Open a new table in your browser. We recommend using Chrome or Firefox throughout the workshop.
+1. Open a new tab in your browser. We recommend using Chrome or Firefox throughout the workshop.
 
 ![Settings page](/images/se-mod3-backend-display1.png)
 
@@ -48,16 +48,17 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 ![Verification code](/images/se-mod3-backend-display7.png)
 
-6. The display app is shown.
+6. The Display App is now shown.
 
 ![Display app](/images/se-mod3-backend-display8.png)
 
-Note the two admin button provided in the top right-hand corner:
+Note the three admin buttons provided in the top right-hand corner:
 
+* **Configure order app**: Use this for transferring settings to the Order App later in this section.
 * **Clear settings**: Empties the local settings cache and clears the backend settings. This causes the *Settings* page to be displayed the next time the page reloads. Use this if you want to change your backend settings.
 * **Sign out**: Signs out the Cognito user from the frontend and returns you to the sign-in page.
 
-
+The QR code shown will change every five minutes and limit the total number of orders to the value shown on the screen (10 by default). Later, in the end-to-end test, you will scan this QR code to start the ordering process.
 
 ## Next steps
 

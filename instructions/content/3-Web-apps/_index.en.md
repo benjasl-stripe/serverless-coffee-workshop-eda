@@ -1,12 +1,8 @@
 +++
-title = "Interactive web apps"
+title = "Configuring the frontends"
 chapter = true
 weight = 13
 pre = "<b>3. </b>"
 +++
 
-Time to configure the front end applications.
-* Log in using a valid QR code
-* Submit an order
-* Progress an order from start to completion
-* Publish updates to the Front end applicaitons using IoT core to manage an open websocket connection
+The coffee shop uses three different frontend applications to co-ordinate orders between baristas and customers. In this section, you'll configure the frontend applications to connect to the backend that you've build so far, and send some test orders.
