@@ -9,7 +9,7 @@ Until now, you have manually started the `OrderProcessor` workflow from the [Ste
 In production, the workflow is started by an event generated from the *Validator service*. The event is emitted each time a QR code is scannned by a customer.
 
 * You will create a new rule in [Amazon EventBridge](https://aws.amazon.com/eventbridge/) that passes the Validator event to your OrderProcessor workflow.
-* You will test the new rule by sending a test event, mocking the event sent from the Validator service.
+* You will test the new rule by mocking the event sent from the Validator service.
 
 ![Execution results](../images/se-mod2-NewOrder4.png)
 
@@ -73,3 +73,13 @@ This starts a new execution in the `OrderProcessor` workflow.
 ![Execution results](../images/se-mod1-wait11.png)
 
 The new rule has sucessfully routed the `NewOrder` event to the `OrderProcessor` workflow. In the next step, you create a rule that routes the `WorkflowStarted` event to an [AWS Lambda](https://aws.amazon.com/lambda/) function.
+
+### Recap
+
+- Before this section, the Validator service published events to the custom bus when the QR code is scanned but nothing was subscribed to these events. You created a rule that subscribes to Validator events and routes the traffic to the order workflow.
+- To test, instead of scanning a QR code to trigger the Validator service, you mocked an example event and published it to the custom event bus using the CLI.
+- You verified that the Validator event triggered the rule and started the workflow.
+
+### Next steps
+
+Next, you'll create an event that the Order Manager microservice uses to persist details of orders.
