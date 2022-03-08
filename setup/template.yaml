@@ -446,7 +446,7 @@ Resources:
       StageName: Prod
       Cors:
         AllowOrigin: "'*'"
-        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowHeaders: "'*'"
         AllowMethods: "'GET,POST,OPTIONS'"
       Auth:
         DefaultAuthorizer: MyCognitoAuthorizor # OPTIONAL

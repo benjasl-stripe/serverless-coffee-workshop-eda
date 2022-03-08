@@ -59,7 +59,7 @@ exports.handler = async (event) => {
     statusCode: 200,
     body: JSON.stringify({bucket}),
     headers: {
-      "Access-Control-Allow-Headers" : "Content-Type",
+      "Access-Control-Allow-Headers" : "*",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
     },
