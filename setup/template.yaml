@@ -268,6 +268,71 @@ Resources:
       BillingMode: PAY_PER_REQUEST
 
 ##########################################
+# Publisher service                      #
+##########################################
+
+  PublisherFunctionAdmin:
+    Type: AWS::Serverless::Function
+    Description: Serverlesspresso Publisher. Invoked by EventBridge rule
+    Properties:
+      CodeUri: ../backends/6-publisher-service/code/
+      Handler: publishToIOT.handler
+      Runtime: nodejs14.x
+      Timeout: 3
+      Environment:
+        Variables:
+          IOT_DATA_ENDPOINT: !GetAtt IotEndpoint.IotEndpointAddress
+          IOT_TOPIC: 'serverlesspresso-admin'
+      Policies:
+      - Statement:
+          - Effect: Allow
+            Resource: 'arn:aws:iot:*'
+            Action:
+              - iot:Connect
+              - iot:Publish
+
+  PublisherFunctionUser:
+    Type: AWS::Serverless::Function
+    Description: Serverlesspresso Publisher. Invoked by EventBridge rule
+    Properties:
+      CodeUri: ../backends/6-publisher-service/code/
+      Handler: publishToIOT.handler
+      Runtime: nodejs14.x
+      Timeout: 3
+      Environment:
+        Variables:
+          IOT_DATA_ENDPOINT: !GetAtt IotEndpoint.IotEndpointAddress
+          IOT_TOPIC: 'serverlesspresso-user-'
+      Policies:
+      - Statement:
+          - Effect: Allow
+            Resource: 'arn:aws:iot:*'
+            Action:
+              - iot:Connect
+              - iot:Publish
+
+  PublisherFunctionConfig:
+    Type: AWS::Serverless::Function
+    Description: Serverlesspresso Publisher. Invoked by EventBridge rule
+    Properties:
+      CodeUri: ../backends/6-publisher-service/code/
+      Handler: publishToIOT.handler
+      Runtime: nodejs14.x
+      Timeout: 3
+      Environment:
+        Variables:
+          IOT_DATA_ENDPOINT: !GetAtt IotEndpoint.IotEndpointAddress
+          IOT_TOPIC: 'serverlesspresso-config'
+      Policies:
+      - Statement:
+          - Effect: Allow
+            Resource: 'arn:aws:iot:*'
+            Action:
+              - iot:Connect
+              - iot:Publish
+
+
+##########################################
 # Config service                         #
 ##########################################
   ConfigTable:
