@@ -1,5 +1,5 @@
 +++
-title = "Order manager workflow"
+title = "Order Manager workflow"
 weight = 15
 +++
 
