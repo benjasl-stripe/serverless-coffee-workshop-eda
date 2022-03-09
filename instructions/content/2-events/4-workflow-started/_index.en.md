@@ -1,11 +1,9 @@
 +++
-title = "Publish to the frontends"
+title = "Workflow Started"
 weight = 14
 +++
 
 ## Overview
-
-TODO TODO
 
 The Order Processor workflow built in module emits the `WorkflowStarted` event. At this point in the order, the workflow has checked that the shop is open and that the barista has capacity for the new order. The workflow now waits for up to 5 minutes for the customer to choose and submit their coffee order. This is the first time in the process that the order waits for human interaction.
 

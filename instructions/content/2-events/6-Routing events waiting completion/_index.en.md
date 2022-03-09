@@ -1,10 +1,10 @@
 +++
 title = "Waiting completion"
-weight = 15
+weight = 16
 +++
 ## Overview
 
-The `WaitingCompletion` event is emitted by the `OrderProcessor` workflow built in module 1. At this point in the order, the user has submitted thier drink request, the `OrderProcessor` workflow has generated an order number, and is now paused until the barista completes the order. The workflow has emitted a `WaitingCompletion` event, along with a new `TaskTken` which is used to resume the workflow. 
+The `WaitingCompletion` event is emitted by the `OrderProcessor` workflow built in module 1. At this point in the order, the user has submitted thier drink request, the `OrderProcessor` workflow has generated an order number, and is now paused until the barista completes the order. The workflow has emitted a `WaitingCompletion` event, along with a new `TaskTken` which is used to resume the workflow.
 
 You will now create a new a rule to route this event to a Lambda function that will update the `serverlesspresso-order-table` with the new `TaskToken`, order number, and order state.
 
@@ -40,7 +40,7 @@ You will now create a new a rule to route this event to a Lambda function that w
 
 8. Choose **save**.
 
-9. In the *Select targets* section, choose *Lambda* 
+9. In the *Select targets* section, choose *Lambda*
 
 10. In the Lambda section, choose the *WaitingCompletion* function*. You can start typing "WaitingCompletion" into field to find the workflow.
 
@@ -60,13 +60,13 @@ To start a new workflow:
 ```
 aws events put-events --entries '[{"Source":"awsserverlessda.serverlesspresso", "DetailType":"Validator.NewOrder", "EventBusName":"Serverlesspresso", "Detail": "{\"userId\":\"1\",\"orderId\":\"2\"}"}]'
 
-``` 
+```
 
 The Workflow should be paused at the *WorkflowStarted* state, The first TaskToken should already have been persisted to the [serverlesspresso-order-table](https://console.aws.amazon.com/dynamodbv2/home?#item-explorer?initialTagKey=&maximize=true&table=serverlesspresso-order-table)  in `DynamoDB`.
 
 1. Go to the [serverlesspresso-order-table](https://console.aws.amazon.com/dynamodbv2/home?#item-explorer?initialTagKey=&maximize=true&table=serverlesspresso-order-table).
 
-1. Find the entery where **SK** is "2", choose **Orders** from the *PK* column. 
+1. Find the entery where **SK** is "2", choose **Orders** from the *PK* column.
 ![Execution results](../images/se-mod2-WaitingCompletion2.png)
 
 1. The `TaskToken` is presisted here along with the unique order ID. The appliction uses this to resume the workflow.
@@ -77,7 +77,7 @@ In the previous section you discovered how the *OrderManager* workflow, is used 
 ![Execution results](../images/se-mod2-WaitingCompletion3.png)
 
 1. Run the *OrderManager* workflow, to update the order and move resume the orderProssing Workflow.
-1. Go to the workflow in the Step Functions console, 
+1. Go to the workflow in the Step Functions console,
 1. Choose *Start execution*, enter the following into the **input** text area and choose *Start execution*:
 
 ```
@@ -98,7 +98,7 @@ The workflow will pause at this step untill the Barista notifies the system that
 ## Completing the order
 
 1. Run the *OrderManager* workflow, to update the order move resume the orderProssing Workflow.
-1. Go to the workflow in the Step Functions console, 
+1. Go to the workflow in the Step Functions console,
 1. Choose *Start execution*, enter the following into the **input** text area and choose *Start execution*:
   Notice that the input payload contains the `action:complete`.
 
