@@ -32,7 +32,7 @@
       "Type": "Pass",
       "Next": "DynamoDB Update Order Record",
       "Result": {
-        "state": "CANCELLED"
+        "state": "Cancelled"
       },
       "ResultPath": "$.result"
     },
@@ -73,7 +73,7 @@
           "Entries": [
             {
               "Detail.$": "States.JsonToString($.record)",
-              "DetailType.$": "States.Format('OrderManager.{}', $.result.state)",
+              "DetailType.$": "States.Format('OrderManager.Order{}', $.result.state)",
               "EventBusName": "Serverlesspresso",
               "Source": "awsserverlessda.serverlesspresso",
               "Time.$": "$$.State.EnteredTime"
@@ -88,7 +88,7 @@
       "Type": "Pass",
       "Next": "DynamoDB Update Order Record",
       "Result": {
-        "state": "COMPLETED"
+        "state": "Completed"
       },
       "ResultPath": "$.result"
     },
