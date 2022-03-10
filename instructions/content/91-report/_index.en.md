@@ -1,5 +1,5 @@
 +++
-title = "Bug/feature request - TODO"
+title = "Bug/feature request"
 chapter = true
 weight = 92
 +++

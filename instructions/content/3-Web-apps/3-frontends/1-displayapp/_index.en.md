@@ -48,6 +48,11 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 ![Verification code](/images/se-mod3-backend-display7.png)
 
+****************
+**NOTE FOR INTERNAL TESTING GROUP**
+At this point, go to the the Cognito console and add the new user to a group called "admin". The admin apps require this group membership and we've not yet had time to change it.
+****************
+
 6. The Display App is now shown.
 
 ![Display app](/images/se-mod3-backend-display8.png)
@@ -59,6 +64,8 @@ Note the three admin buttons provided in the top right-hand corner:
 * **Sign out**: Signs out the Cognito user from the frontend and returns you to the sign-in page.
 
 The QR code shown will change every five minutes and limit the total number of orders to the value shown on the screen (10 by default). Later, in the end-to-end test, you will scan this QR code to start the ordering process.
+
+Keep the Display App open in a browser tab.
 
 ## Next steps
 

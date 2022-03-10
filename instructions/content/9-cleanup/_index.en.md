@@ -1,5 +1,5 @@
 +++
-title = "Cleanup - TODO"
+title = "Cleanup"
 chapter = true
 weight = 90
 +++

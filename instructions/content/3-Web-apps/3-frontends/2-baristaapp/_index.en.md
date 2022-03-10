@@ -38,15 +38,9 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 3. Choose **Save and reload**.
 
-![Cognito signin](/images/se-mod3-frontends-barista3.png)
+4. Select the *Sign In* tab. Enter the email and password for the account you configured in the previous section. Choose **Sign In**
 
-4. Select the *Create Account* tab. Enter a valid email you have access to during the workshop, together with a password. Choose **Create Account**
-
-![Cognito signin completed](/images/se-mod3-backend-display6.png)
-
-5. Enter the verification code from the email and choose **Confirm**.
-
-![Verification code](/images/se-mod3-backend-display7.png)
+![Signin screen](/images/se-mod3-frontends-setup3.png)
 
 6. The Barista App is shown.
 
@@ -57,6 +51,8 @@ Note the three admin buttons provided on the tool bar:
 * **Open store**: This toggles the store open state between *Open* and *Closed*. When the store is closed, the Order App cannot place any new orders.
 * **Clear settings**: Empties the local settings cache and clears the backend settings. This causes the *Settings* page to be displayed the next time the page reloads. Use this if you want to change your backend settings.
 * **Sign out**: Signs out the Cognito user from the frontend and returns you to the sign-in page.
+
+Keep the Barista App open in a browser tab.
 
 ## Next steps
 

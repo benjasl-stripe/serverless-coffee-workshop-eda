@@ -3,7 +3,7 @@ title = "The Customer App"
 weight = 13
 +++
 
-The Customer App runs on customers smartphones. When they first scan the QR code using a smartphone, the URL redirects the browser to this web app.
+The Customer App runs on customers' smartphones. When they first scan the QR code using a smartphone, the URL redirects the browser to this web app.
 
 ## Inside this section
 
@@ -32,14 +32,8 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 ![Configuration settings](/images/se-mod3-frontends-customer3.png)
 
-4. Choose **Save and reload**.
-
-
-
-TODO: SCAN THE BARCODE
-
-
+4. Choose **Save and reload**. Close this tab for now.
 
 ## Next steps
 
-Next, you will set up the Barista App.
+You have now configured all three of the web apps and can test your workload from end-to-end.
