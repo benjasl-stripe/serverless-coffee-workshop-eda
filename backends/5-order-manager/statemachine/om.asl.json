@@ -64,8 +64,7 @@
         "Next": "Emit Completed || Cancelled",
         "ResultSelector": {
           "TaskToken.$": "$.Attributes.TaskToken.S"
-        },
-        "OutputPath": "$.record"
+        }
       },
       "Emit Completed || Cancelled": {
         "Type": "Task",
