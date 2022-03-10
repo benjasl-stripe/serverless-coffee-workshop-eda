@@ -22,7 +22,7 @@ The coffee bar ordering process is as follows:
 
 ## Application structure
 
-You will be creating various microservices the integrate existing frontends with your back serverless application. You will be using AWS Step Functions to handle orchestration and Amazon EventBridge to handle choreography.
+You will be creating various microservices that integrate existing frontends with your back serverless application. You will be using AWS Step Functions to handle orchestration and Amazon EventBridge to handle choreography.
 
 ### Frontends
 

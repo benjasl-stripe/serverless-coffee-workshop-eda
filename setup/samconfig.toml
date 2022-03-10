@@ -2,10 +2,10 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "serverlesspresso-backend-test"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-18x8jmf1fa7ob"
-s3_prefix = "serverlesspresso-backend-test"
-region = "us-east-1"
+stack_name = "se-workshop-core"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-h1t8ybd8njcq"
+s3_prefix = "se-workshop-core"
+region = "eu-west-1"
 capabilities = "CAPABILITY_IAM"
 parameter_overrides = "AppName=\"Serverlesspresso\" Service=\"core\" LogRetentionInDays=\"14\" TimeInterval=\"5\" CodeLength=\"10\" TokensPerBucket=\"10\" Source=\"awsserverlessda.serverlesspresso\""
 image_repositories = []

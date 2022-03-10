@@ -64,7 +64,7 @@ The workflow must branch logic depending on the value returned by the ListExecut
 
 5. In the *Conditions for rule #1* panel, specify the rule that will determine if the store is closed:
 - For *Not*, leave blank in the dropdown.
-- For *Variable*, enter `$.isCapacityAvailable[20]`.
+- For *Variable*, enter `$.isCapacityAvailable.Executions[20]`.
 - For *Operator*, select **is present**.
 - Choose **Save conditions**.
 
@@ -127,7 +127,7 @@ The workflow must branch logic depending on the value returned by the ListExecut
       "Type": "Choice",
       "Choices": [
         {
-          "Variable": "$.isCapacityAvailable[20]",
+          "Variable": "$.isCapacityAvailable.Executions[20]",
           "IsPresent": true,
           "Next": "PutEvents"
         }

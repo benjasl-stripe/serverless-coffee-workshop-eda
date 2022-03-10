@@ -61,10 +61,28 @@
         "ReturnValues": "ALL_NEW"
       },
         "ResultPath": "$.record",
-        "Next": "Resume Order Processor",
+        "Next": "Emit Completed || Cancelled",
         "ResultSelector": {
           "TaskToken.$": "$.Attributes.TaskToken.S"
         },
+        "OutputPath": "$.record"
+      },
+      "Emit Completed || Cancelled": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::events:putEvents",
+        "Parameters": {
+          "Entries": [
+            {
+              "Detail.$": "States.JsonToString($.record)",
+              "DetailType.$": "States.Format('OrderManager.{}', $.result.state)",
+              "EventBusName": "Serverlesspresso",
+              "Source": "awsserverlessda.serverlesspresso",
+              "Time.$": "$$.State.EnteredTime"
+            }
+          ]
+        },
+        "Next": "Resume Order Processor",
+        "ResultPath": "$.eventEmit",
         "OutputPath": "$.record"
       },
     "Complete Order": {

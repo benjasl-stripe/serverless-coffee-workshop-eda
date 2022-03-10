@@ -35,7 +35,7 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
 
 ```
 {
-  "TableName": "serverlesspresso-config-table",
+  "TableName": "serverlesspresso-counting-table",
   "Key": {
     "PK": {
       "S": "orderID"
@@ -126,7 +126,7 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
       "Type": "Task",
       "Resource": "arn:aws:states:::dynamodb:updateItem",
       "Parameters": {
-        "TableName": "serverlesspresso-config-table",
+        "TableName": "serverlesspresso-counting-table",
         "Key": {
           "PK": {
             "S": "orderID"
@@ -195,7 +195,7 @@ In this section, you will test the changes to the workflow.
 ### Recap
 
 - In this section, you add a state transition that assigns a unique, incrementing order number to the execution.
-- This increments a value in the configuration DynamoDB table and appends the result in the output payload.
+- This increments a value in the counting DynamoDB table and appends the result in the output payload.
 - You tested this new feature in the console to see how the order ID increments with each execution.
 
 ### Next steps

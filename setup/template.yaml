@@ -825,6 +825,9 @@ Resources:
             Action: "dynamodb:UpdateItem"
             Resource: !GetAtt ConfigTable.Arn
           - Effect: "Allow"
+            Action: "dynamodb:UpdateItem"
+            Resource: !GetAtt CountingTable.Arn
+          - Effect: "Allow"
             Action: "states:ListExecutions"
             Resource: !Join [ "", [ "arn:aws:states:", !Ref "AWS::Region", ":", !Ref "AWS::AccountId", ":stateMachine:", "*"] ]
       Roles:

@@ -8,7 +8,7 @@ The Serverlesspresso application consists of frontends and a backend. The backen
 Some parts of the backend application have been developed already. In this section, you will clone a repo containing these pre-built parts and deploy it into your environment. You will deploy:
 
 * A Cognito configuration so users can log in from the frontends and be autheticated by the backend.
-* An Order Management services, which will keep track of the coffee orders.
+* An Order Management service, which will keep track of the coffee orders.
 * TBD
 
 After you have deployed these back-end resources, you will then build the Step Functions workflow and set up the events that make the application work.
@@ -45,15 +45,20 @@ This allows you to specify your application requirements in code and SAM transfo
 
 ### Step-by-step instructions
 
-In this section, you will complete your first SAM deployment which will build much of the backend infrastructure which we will add to through the rest of the workshop.
+In this section, you will complete your first SAM deployment which will build much of the backend infrastructure which we will add to throughout the rest of the workshop.
 
 1. Go back to your browser tab with Cloud9 running. If you need to re-launch Cloud9, from the AWS Management Console, select **Services** then select [**Cloud9**](https://console.aws.amazon.com/cloud9) under *Developer Tools*. **Make sure your region is correct.**
 
 2. Change directory:
 ```
-cd ~/environment/serverlesspresso-backend/
+cd ~/environment/serverlesspresso-backend/setup
 ```
-3. Use SAM CLI to deploy the infrastructure by running the following command:
+3. Use SAM CLI to build any code dependancies by running the following command:
+```
+sam build
+```
+
+4. Use SAM CLI to deploy the infrastructure by running the following command:
 ```
 sam deploy --guided
 ```

@@ -162,7 +162,7 @@ aws stepfunctions start-execution --state-machine-arn YOUR_STATE_MACHINE_ARN --i
 
 When you created the workflow, you added two transitions that wait for callbacks. These allow time for the customer to submit their order details, or the barista to make the drinks. The customer has 5 minutes to complete this step, and the barista has 15 minutes.
 
-In this section, you will see what happens when a timeout occurs, uses the executions you started in the previous step.
+In this section, you will see what happens when a timeout occurs, using the executions you started in the previous step.
 
 ### Step-by-step instructions ##
 

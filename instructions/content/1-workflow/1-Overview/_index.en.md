@@ -15,13 +15,13 @@ In the coffee ordering application, each customer order follows a series of step
 
 Each drink order will be in a separate point of this workflow. Traditionally, embedding this type of logic in code results in many nested logic branches and relying on a central database to keep track of the state. Handling timeouts also requires a separate process to take action on workflows that have exceeded their allowed time.
 
-This type of workflow logic is an example of a state machine. This workshop uses [AWS Step Functions](https://aws.amazon.com/step-functions/) to construct a state machine that can handle all of these different steps for a given drink order. Each drink order is a separate execution in the state machine. And whether there is one drink per hour or one hundred drinks per minute, Step Functions maintains all the separate executions independently and reliably, without the need for complex custom code.
+This type of workflow logic is an example of a state machine. This workshop uses [AWS Step Functions](https://aws.amazon.com/step-functions/) to construct a state machine that can handle all of these different steps for a given drink order. Each drink order is a separate execution of the state machine. And whether there is one drink per hour or one hundred drinks per minute, Step Functions maintains all the separate executions independently and reliably, without the need for complex custom code.
 
-In this module, you will build the Step Functions workflow that keep track of each individual order for the coffee shop.
+In this module, you will build the Step Functions workflow that keeps track of each individual order for the coffee shop.
 
 ## How it works
 
-Step Functions workflows are defined using Amazon States Language (ASL). ASL is a JSON-based, structured language used to define state machines, a collection of states that do work (Task states), determine which states to transition to next (choice states, stop an execution with an error (fail states), and so on. Workflows are JSON-based documents that you can check into GitHub, and deploy with infrastructure as code tools like AWS SAM or CDK.
+Step Functions workflows are defined using Amazon States Language (ASL). ASL is a JSON-based, structured language used to define state machines, a collection of states that do work (Task states), determine which states to transition to next (choice states), stop an execution with an error (fail states), and so on. Workflows are JSON-based documents that you can check into GitHub, and deploy with infrastructure as code tools like AWS SAM or CDK.
 
 The AWS Management Console provide a visual builder tool called the Workflow Studio, which can help simplify building workflows. After building the tool visually, you can save it for immediate use in the AWS Cloud, or export the definition in ASL. This module uses the Workflow Studio to build the workflow.
 

@@ -23,7 +23,7 @@ Resume the *OrderProcessor* workflow by running the *OrderManager* workflow:
 
 1. Go to the Step Functions console. From the AWS Management Console, select *Services* then select Step Functions under *Application Integration*. **Make sure your region is correct**.
 
-2. Select *State machines* from the left panel, then choose *OrderProcessorWorkflow*. Choose *Start execution*.
+2. Select *State machines* from the left panel, then choose *OrderManagerWorkflow*. Choose *Start execution*.
 
 ![The Order manager workflow](../images/se-mod3-events5-1.png)
 
@@ -50,7 +50,7 @@ See what happens if an item is ordered that is not on the menu:
 1. Choose *Start execution*, enter the following into the **input** text area and choose *Start execution*:
 
 ```
-{"action":"","body":{"userId":"1","drink":"milkshake","modifiers":[],"icon":"barista-icons_cappuccino-alternative"},"orderId":"2","baristaUserId":"3"}
+{"action":"","body":{"userId":"1","drink":"milkshake","modifiers":[],"icon":"barista-icons_cappuccino-alternative"},"orderId":"1","baristaUserId":"3"}
 ```
 
 This input payload includes a drink that is not available on the menu `"drink":"milkshake"`.
