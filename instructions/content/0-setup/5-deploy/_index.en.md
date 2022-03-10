@@ -1,6 +1,6 @@
 +++
 title = "Deploying the backend"
-weight = 13
+weight = 15
 +++
 
 The Serverlesspresso application consists of frontends and a backend. The backend is a set of serverless microservices.
@@ -15,6 +15,17 @@ After you have deployed these back-end resources, you will then build the Step F
 
 Each of the following sections provides an implementation overview and detailed, step-by-step instructions.
 
+## Backend-architecture
+
+[![See Serverlesspresso](/images/se-setup-overview4.png)](https://youtu.be/M6lPZCRCsyA)
+The backend is a set of serverless microservices. In this section, you will deploy the following:
+
+* The *Counting* microservice:  An [Amazon DynamoDB](https://aws.amazon.com/dynamodb) table for persisting Order numbers.
+* The *OrderManager* microservice - Provides an API to send/update/cancel a coffee order. Consists of a DynamoDB table containing the state of each customer order.
+* The *Config* microservice - A DynamoDB table containg information about menu items and shop status, along with An [Amazon API Gateway](https://aws.amazon.com/apigateway) Resource to provide authenticated access.
+* The *Publishing* microservice - Routes events to different IoT core topics. IoT Core publishes event messages to front end applications.
+* The *Validator* microservice - Provides QR codes to front end display applicaiton, Codes are sotred in a DynamoDB table and used to validate each order.
+
 ## Cloning the GitHub repository ##
 
 ### Step-by-step instructions ###
@@ -25,7 +36,7 @@ Clone the repo which will download a local copy of the instructions and code you
 
 ```console
 cd ~/environment/
-git clone https://github.com/aws-samples/aws-serverless-workshop-serverlesspresso ./serverlesspresso-backend
+git clone https://github.com/bls20AWS/serverless-coffee-workshop-eda ./serverlesspresso-backend
 ```
 
 ![Module 0 Cloud9 clone](../images/setup6.png)
@@ -53,12 +64,12 @@ In this section, you will complete your first SAM deployment which will build mu
 ```
 cd ~/environment/serverlesspresso-backend/setup
 ```
-3. Use SAM CLI to build any code dependancies by running the following command:
+3. Use the SAM CLI to build any code dependancies by running the following command:
 ```
 sam build
 ```
 
-4. Use SAM CLI to deploy the infrastructure by running the following command:
+4. Use the SAM CLI to deploy the infrastructure by running the following command:
 ```
 sam deploy --guided
 ```
@@ -86,6 +97,15 @@ Copy these outputs from the stack to a scratch file, notepad or text editor for 
 
 5. SAM has now used CloudFormation to deploy a stack of backend resources which will be used for the rest of the workshop.
 
+* 2 Lambda functions
+* 3 S3 buckets
+* A DynamoDB tables
+* A Cognito UserPool
+* An AWS IoT thing
+* Step Functions workflows
+* EventBridge custom event bus
+* Several IAM roles and policies.
+
 ### Recap
 
 * You cloned a GitHub Repo containing an infrastructure template with resources used by the application.
@@ -94,3 +114,7 @@ Copy these outputs from the stack to a scratch file, notepad or text editor for 
 ### Next steps
 
 In the next module, you'll learn about workflows and state machines, and build the main workflow that powers the application.
+
+{{% notice tip %}}
+Now you are ready to start building 👷
+{{% notice note %}}
