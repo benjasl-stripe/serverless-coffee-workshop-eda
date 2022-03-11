@@ -60,30 +60,41 @@
         },
         "ReturnValues": "ALL_NEW"
       },
-        "ResultPath": "$.record",
-        "Next": "Emit Completed || Cancelled",
-        "ResultSelector": {
-          "TaskToken.$": "$.Attributes.TaskToken.S"
-        }
+      "ResultPath": "$.result",
+      "Next": "Construct record (1)",
+      "ResultSelector": {
+        "Attributes.$": "$.Attributes"
+      }
+    },
+    "Construct record (1)": {
+      "Type": "Pass",
+      "Next": "Emit Completed || Cancelled",
+      "ResultPath": "$.detail",
+      "Parameters": {
+        "baristaUserId.$": "$.result.Attributes.baristaUserId.S",
+        "orderId.$": "$.orderId",
+        "userId.$": "$.result.Attributes.USERID.S",
+        "ORDERSTATE.$": "$.result.Attributes.ORDERSTATE.S",
+        "Message": "Barrista has cancelled or completed teh order"
+      }
+    },
+    "Emit Completed || Cancelled": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::events:putEvents",
+      "Parameters": {
+        "Entries": [
+          {
+            "Detail.$": "States.JsonToString($.detail)",
+            "DetailType.$": "States.Format('OrderManager.Order{}', $.detail.ORDERSTATE)",
+            "EventBusName": "Serverlesspresso",
+            "Source": "awsserverlessda.serverlesspresso",
+            "Time.$": "$$.State.EnteredTime"
+          }
+        ]
       },
-      "Emit Completed || Cancelled": {
-        "Type": "Task",
-        "Resource": "arn:aws:states:::events:putEvents",
-        "Parameters": {
-          "Entries": [
-            {
-              "Detail.$": "States.JsonToString($.record)",
-              "DetailType.$": "States.Format('OrderManager.Order{}', $.result.state)",
-              "EventBusName": "Serverlesspresso",
-              "Source": "awsserverlessda.serverlesspresso",
-              "Time.$": "$$.State.EnteredTime"
-            }
-          ]
-        },
-        "Next": "Resume Order Processor",
-        "ResultPath": "$.eventEmit",
-        "OutputPath": "$.record"
-      },
+      "Next": "Resume Order Processor 1",
+      "ResultPath": "$.eventEmit"
+    },
     "Complete Order": {
       "Type": "Pass",
       "Next": "DynamoDB Update Order Record",
@@ -149,7 +160,7 @@
     "Update order": {
       "Type": "Task",
       "Resource": "arn:aws:states:::dynamodb:updateItem",
-      "Parameters":   {
+      "Parameters": {
         "TableName": "serverlesspresso-order-table",
         "Key": {
           "PK": {
@@ -175,14 +186,23 @@
         },
         "ReturnValues": "ALL_NEW"
       },
-      "Next": "Resume Order Processor",
+      "Next": "Resume Order Processor 2",
       "ResultSelector": {
         "TaskToken.$": "$.Attributes.TaskToken.S"
       },
       "OutputPath": "$.record",
       "ResultPath": "$.record"
     },
-    "Resume Order Processor": {
+    "Resume Order Processor 1": {
+      "Type": "Task",
+      "Parameters": {
+        "Output": "{}",
+        "TaskToken.$": "$.record.Attributes.TaskToken.S"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:sfn:sendTaskSuccess",
+      "End": true
+    },
+    "Resume Order Processor 2": {
       "Type": "Task",
       "Parameters": {
         "Output": "{}",
@@ -195,10 +215,9 @@
       "Type": "Pass",
       "Next": "Make OR Unmake?"
     },
-
-    "Make OR Unmake?":{
-      "Type":"Choice",
-      "Choices":[
+    "Make OR Unmake?": {
+      "Type": "Choice",
+      "Choices": [
         {
           "Variable": "$.action",
           "StringEquals": "unmake",
@@ -212,8 +231,7 @@
       ],
       "Default": "DynamoDB Update Order"
     },
-
-    "Unmake Order":{
+    "Unmake Order": {
       "Type": "Pass",
       "Parameters": {
         "baristaUserId": "",
@@ -222,12 +240,11 @@
       },
       "Next": "DynamoDB Update Order"
     },
-    
     "DynamoDB Update Order": {
       "Type": "Task",
       "Resource": "arn:aws:states:::dynamodb:updateItem",
       "Parameters": {
-        "TableName": "${OMTable}",
+        "TableName": "serverlesspresso-order-table",
         "Key": {
           "PK": {
             "S": "orders"
@@ -248,9 +265,9 @@
         "ReturnValues": "ALL_NEW"
       },
       "ResultSelector": {
-        "TaskToken.$": "$.Attributes.TaskToken.S"
+        "Attributes.$": "$.Attributes"
       },
-      "ResultPath": "$.TaskToken",
+      "ResultPath": "$.result",
       "Next": "Construct record"
     },
     "Construct record": {
@@ -258,8 +275,9 @@
       "Next": "EventBridge Emit Making Order",
       "ResultPath": "$.detail",
       "Parameters": {
-        "baristaUserId.$": "$.baristaUserId",
+        "baristaUserId.$": "$.result.Attributes.baristaUserId.S",
         "orderId.$": "$.orderId",
+        "userId.$": "$.result.Attributes.USERID.S",
         "Message": "The barista has pressed the 'Make order' button, this Invokes a Lambda function via API Gateway, which updates the order in DynamoDB and emits a new 'make order' Event."
       }
     },
