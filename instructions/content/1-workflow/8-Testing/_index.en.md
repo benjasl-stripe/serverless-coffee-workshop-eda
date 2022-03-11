@@ -22,8 +22,7 @@ The shop's state is stored in the DynamoDB configuration table for the applicati
 
 ![DynamoDB table view](../images/se-mod1-testing0.png)
 
-The three items in the table provide state information for different parts of the application:
-- **orderID**: Used by the workflow to increment the human-readable order ID for each drink order.
+The items in the table provide state information for different parts of the application:
 - **menu**: Used by the customer ordering frontend to display a valid list of drinks and modifiers for ordering.
 - **config**: Contains general settings, including whether the store is open or closed.
 
