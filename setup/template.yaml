@@ -369,7 +369,7 @@ Resources:
       MemorySize: 128
       Environment:
         Variables:
-          BusName: !Ref ServerlesspressoEventBus
+          EventBusName: !Ref ServerlesspressoEventBus
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ConfigTable
