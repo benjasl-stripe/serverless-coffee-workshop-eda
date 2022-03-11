@@ -67,12 +67,6 @@ Make sure the response confirms your Region is supported.
 
 ![Module 0 Region check](../images/0-setup-region-check.png)
 
-10. Next, install JQ to provide formatting for JSON in the console:
-
-```
-sudo yum install jq -y
-```
-
 {{% notice tip %}}
 
 Keep an open scratch pad in Cloud9 or a text editor on your local computer for notes. When the step-by-step directions tell you to note something such as
