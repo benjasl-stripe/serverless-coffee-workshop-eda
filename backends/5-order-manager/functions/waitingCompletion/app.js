@@ -46,7 +46,7 @@ exports.handler = async (event) => {
           orderId: result.Attributes.SK,
           orderNumber: result.Attributes.orderNumber,
           state: result.Attributes.ORDERSTATE,
-          drinkOrder: result.Attributes.drinkOrder,
+          drinkOrder: JSON.parse(result.Attributes.drinkOrder),
           userId: result.Attributes.USERID,
           robot: result.Attributes.robot,
           TS: result.Attributes.TS,
