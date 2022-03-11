@@ -52,7 +52,7 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
 ```
 ![Configure UpdateItem](../images/se-mod1-ordernum2.png)
 
-3. Choose the *Output* tab. Here, you will modifier the state's output to include the result from the DynamoDB query:
+3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
 - Check the box *Add original input to output using ResultPath*.
 - In the value textbox, enter `$.Order.Payload`.
 - Check the box *Transform result with ResultSelector*.

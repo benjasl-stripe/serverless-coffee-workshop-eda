@@ -53,7 +53,7 @@ After this section, you will have a workflow that you will use to build out the 
 
 (1) For *Name*, enter **OrderProcessorWorkflow**.
 
-(2) For *Permissions*, choose *Choose an existing role*. Select the role that begins with `serverlesspresso-workshop-core-4-OrderProcessorRole`. The workflow must have permissions to access all the resources it references, and this role has been created for you during the setup module.
+(2) For *Permissions*, choose *Choose an existing role*. Select the role that begins with `serverlesspresso-backend-OrderProcessorRole`. The workflow must have permissions to access all the resources it references, and this role has been created for you during the setup module.
 
 (3) For *Logging*, keep *OFF* in the dropdown. If you turn this on, Step Functions will log execution history to CloudWatch Logs.
 
