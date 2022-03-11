@@ -197,7 +197,7 @@
       "Type": "Task",
       "Parameters": {
         "Output": "{}",
-        "TaskToken.$": "$.record.Attributes.TaskToken.S"
+        "TaskToken.$": "$.result.Attributes.TaskToken.S"
       },
       "Resource": "arn:aws:states:::aws-sdk:sfn:sendTaskSuccess",
       "End": true
