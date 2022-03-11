@@ -173,18 +173,22 @@ paths:
         credentials: 
           Fn::GetAtt: [ConfigRESTApiRole, Arn]
         httpMethod: "POST"
-        uri: 
-          Fn::Sub: arn:aws:apigateway:${AWS::Region}:states:action/StartExecution
+        uri: "arn:aws:apigateway:${AWS::Region}:dynamodb:action/UpdateItem"
         responses:
           default:
             statusCode: "200"
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
         requestTemplates:
-          application/json: "#set($state = $input.params('state'))\n\n{\n    \"TableName\"\
-            : \"serverlesspresso-config-table\",\n    \"Key\": {\n      \"PK\": {\n\
-            \        \"S\":\"config\"\n        }\n    },\n    \"UpdateExpression\"\
-            : \"set storeOpen = :openState\",\n    \"ExpressionAttributeValues\":\
-            \ {\n    \":openState\": {\n      \"BOOL\": $state\n    }\n    },\n  \
-            \  \"ReturnValues\":\"ALL_NEW\"\n}"
+          application/json: "#set($state = $input.params('state'))\n\n#if( $state\
+            \ == 'open' )\n  #set($stateBool = true)\n#else\n  #set($stateBool = false)\n\
+            #end\n\n{\n    \"TableName\": \"serverlesspresso-config-table\",\n   \
+            \ \"Key\": {\n      \"PK\": {\n        \"S\":\"config\"\n        }\n \
+            \   },\n    \"UpdateExpression\": \"set storeOpen = :openState\",\n  \
+            \  \"ExpressionAttributeValues\": {\n    \":openState\": {\n      \"BOOL\"\
+            : $stateBool\n    }\n    },\n    \"ReturnValues\":\"ALL_NEW\"\n}"
         passthroughBehavior: "when_no_templates"
         type: "aws"
     options:
