@@ -643,6 +643,7 @@ Resources:
         Variables:
           TableName: !Ref OrderTable
           BusName: !Ref ServerlesspressoEventBus
+          Source: !Ref Source
       Policies:
         - DynamoDBWritePolicy:
               TableName: !Ref OrderTable
