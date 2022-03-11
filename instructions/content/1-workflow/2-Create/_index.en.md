@@ -31,11 +31,11 @@ After this section, you will have a workflow that you will use to build out the 
 
 ![Design workflow](../images/se-mod1-create3.png)
 
-(1) On this tab, you choose between Actions and Flow. Actions represent steps you can take with AWS services, such as invoking a AWS Lambda function. Flow shows options to manage control flow logic, such as choice states or parallel logic.
+(1) On this tab, you choose between Actions and Flow. Actions represent steps you can take with AWS services, such as invoking an AWS Lambda function. Flow shows options to manage control flow logic, such as choice states or parallel logic.
 
 (2) The toolbar at the top enables you to undo or redo changes or change the layout of the workflow visualization.
 
-(3) The workflow visualation shows a flowchart of the current workflow. You can click on elements in this flow and drag and drog to make changes.
+(3) The workflow visualization shows a flowchart of the current workflow. You can click on elements in this flow and drag and drop to make changes.
 
 (4) The right panel shows options for the currently selected element. In a new workflow like this, you can set a comment or a timeout value for the entire workflow.
 
@@ -83,7 +83,7 @@ In this section, you will test the new workflow.
 
 (1) The *Execution status* shows *Succeeded*. This panel also the start and end time for the execution and an Amazon Resource Name (ARN) reference.
 
-(2) The *Graph inspector* shows the flow of this execution with the flow path highlighted in green and any errors state in red. You can select each element and see the input and output.
+(2) The *Graph inspector* shows the flow of this execution with the flow path highlighted in green and any error states in red. You can select each element and see the input and output.
 
 (3) The *Execution event history* shows each event during the execution and the cumulative elapsed time. Every workflow has an ExecutionStarted event. This simple workflow with one pass state has a PassStateEntered and PassStateExited event. Click the triangle next to each event to show the input and output payload for each event.
 

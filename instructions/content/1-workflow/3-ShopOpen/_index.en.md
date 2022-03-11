@@ -169,7 +169,7 @@ In this section, you will test the new workflow.
 ### Recap
 
 - In this section, you created the first choice state in the workflow. This uses an item from a DynamoDB table to determine if the shop is open.
-- You tested this in the console and saw how a Boolean value in the configuration change the path of the workflow.
+- You tested this in the console and saw how a Boolean value in the configuration changes the path of the workflow.
 
 ### Next steps
 

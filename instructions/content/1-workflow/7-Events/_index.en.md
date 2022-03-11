@@ -55,7 +55,7 @@ In this section, you add an EventBridge PutEvents state that emits an event if e
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait16.png)
 
-6. Connect the *Barista timeout* pass state to the *Emit - error timeout* state. Choose the *Barista timeout* state to open the the attribute panel on the right. In the *Configuration* tab, change *Next state* to *Emit - error timeout*.
+6. Connect the *Barista timeout* pass state to the *Emit - error timeout* state. Choose the *Barista timeout* state to open the attribute panel on the right. In the *Configuration* tab, change *Next state* to *Emit - error timeout*.
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait17.png)
 
@@ -98,7 +98,7 @@ In this section, you update the EventBridge PutEvents state that was created ear
 
 ### Step-by-step instructions ##
 
-1. Chose the *PutEvents* state between the *Shop open?* and *End* states in the designer.
+1. Choose the *PutEvents* state between the *Shop open?* and *End* states in the designer.
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait20.png)
 

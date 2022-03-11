@@ -169,7 +169,7 @@ In this section, you will see what happens when a timeout occurs, using the exec
 
 2. From the left-hand menu, select *State machine* and choose **OrderProcessorWorkflow** from the list.
 
-3. Wait until 5 minutes has elapsed since you started the execution list. You will see that the executions that were running are now in a *Failed* state.
+3. Wait until 5 minutes have elapsed since you started the execution list. You will see that the executions that were running are now in a *Failed* state.
 
 ![Timed out executions](../images/se-mod1-testing5.png)
 
@@ -179,7 +179,7 @@ In this section, you will see what happens when a timeout occurs, using the exec
 
 ### Recap
 
-* You tested how the workflow responds, depending on if the store open or closed.
+* You tested how the workflow responds, depending on if the store is open or closed.
 * You tested the store capacity feature by exceeding the allowed number of executions.
 * You verified that incomplete executions timeout after 5 minutes.
 

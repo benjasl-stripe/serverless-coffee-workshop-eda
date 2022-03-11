@@ -23,7 +23,7 @@ In this module, you will build the Step Functions workflow that keeps track of e
 
 Step Functions workflows are defined using Amazon States Language (ASL). ASL is a JSON-based, structured language used to define state machines, a collection of states that do work (Task states), determine which states to transition to next (choice states), stop an execution with an error (fail states), and so on. Workflows are JSON-based documents that you can check into GitHub, and deploy with infrastructure as code tools like AWS SAM or CDK.
 
-The AWS Management Console provide a visual builder tool called the Workflow Studio, which can help simplify building workflows. After building the tool visually, you can save it for immediate use in the AWS Cloud, or export the definition in ASL. This module uses the Workflow Studio to build the workflow.
+The AWS Management Console provides a visual builder tool called the Workflow Studio, which can help simplify building workflows. After building the tool visually, you can save it for immediate use in the AWS Cloud, or export the definition in ASL. This module uses the Workflow Studio to build the workflow.
 
 {{% notice info %}}
 Watch a 3-minute introduction to [AWS Step Functions Workflow Studio on YouTube](https://www.youtube.com/watch?v=HfTucfkIwhs).

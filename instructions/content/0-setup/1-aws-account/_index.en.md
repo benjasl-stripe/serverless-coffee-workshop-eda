@@ -32,7 +32,7 @@ To launch your personal AWS console:
 
 ![Event Engine](../images/setup3.png)
 
-5. Use the Regon drop-down in the top right to ensure you are running in Oregon (us-west-2). You will use the same Region for the duration of this workshop.
+5. Use the Region drop-down in the top right to ensure you are running in Oregon (us-west-2). You will use the same Region for the duration of this workshop.
 
 
 {{% notice note %}}

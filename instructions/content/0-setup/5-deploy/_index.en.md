@@ -7,7 +7,7 @@ The Serverlesspresso application consists of frontends and a backend. The backen
 
 Some parts of the backend application have been developed already. In this section, you will clone a repo containing these pre-built parts and deploy it into your environment. You will deploy:
 
-* A Cognito configuration so users can log in from the frontends and be autheticated by the backend.
+* A Cognito configuration so users can log in from the frontends and be authenticated by the backend.
 * An Order Management service, which will keep track of the coffee orders.
 * TBD
 
@@ -22,9 +22,9 @@ The backend is a set of serverless microservices. In this section, you will depl
 
 * The *Counting* microservice:  An [Amazon DynamoDB](https://aws.amazon.com/dynamodb) table for persisting Order numbers.
 * The *OrderManager* microservice - Provides an API to send/update/cancel a coffee order. Consists of a DynamoDB table containing the state of each customer order.
-* The *Config* microservice - A DynamoDB table containg information about menu items and shop status, along with An [Amazon API Gateway](https://aws.amazon.com/apigateway) Resource to provide authenticated access.
+* The *Config* microservice - A DynamoDB table containing information about menu items and shop status, along with An [Amazon API Gateway](https://aws.amazon.com/apigateway) Resource to provide authenticated access.
 * The *Publishing* microservice - Routes events to different IoT core topics. IoT Core publishes event messages to front end applications.
-* The *Validator* microservice - Provides QR codes to front end display applicaiton, Codes are sotred in a DynamoDB table and used to validate each order.
+* The *Validator* microservice - Provides QR codes to front end display application, Codes are sotred in a DynamoDB table and used to validate each order.
 
 ## Cloning the GitHub repository ##
 
@@ -64,7 +64,7 @@ In this section, you will complete your first SAM deployment which will build mu
 ```
 cd ~/environment/serverlesspresso-backend/setup
 ```
-3. Use the SAM CLI to build any code dependancies by running the following command:
+3. Use the SAM CLI to build any code dependencies by running the following command:
 ```
 sam build
 ```
@@ -87,9 +87,9 @@ While you wait, here's what the custom parameters do:
 - **LogRetentionInDays**: Defines how many days CloudWatch should keep log files. By default, this has no limit.
 - **Source**: The source name used by events in this application. This helps us filter only for events produced by microservices in this workload.
 
-The *TimeInterval*, *CodeLength*, and *TokensPerBucket* values defines how the barcode functionality works in the Display App in the frontend. With the default values here, the barcode represents a 10-character unique code that provides 10 drinks every 5 minutes. We'll cover this in more detail in the frontends section.
+The *TimeInterval*, *CodeLength*, and *TokensPerBucket* values define how the barcode functionality works in the Display App in the frontend. With the default values here, the barcode represents a 10-character unique code that provides 10 drinks every 5 minutes. We'll cover this in more detail in the frontends section.
 
-4. Once the deployment is complete, you'll see a list outputs in the terminal under `CloudFormation outputs from deployed stack`.
+4. Once the deployment is complete, you'll see a list of output in the terminal under `CloudFormation outputs from deployed stack`.
 
 ![SAM setup](../images/setup9.png)
 

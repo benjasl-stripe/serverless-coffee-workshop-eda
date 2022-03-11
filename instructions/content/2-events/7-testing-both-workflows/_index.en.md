@@ -4,7 +4,7 @@ weight = 17
 +++
 ## Overview
 
-In this section, you will test both workflows. The OrderProcessor workflow manages the overall path of an individual drink order. The OrderManager workflow handles drink updates and status changes. By interacting with both, you can complete a order from start to finish.
+In this section, you will test both workflows. The OrderProcessor workflow manages the overall path of an individual drink order. The OrderManager workflow handles drink updates and status changes. By interacting with both, you can complete an order from start to finish.
 
 There are 3 steps:
 - Creating a new drink order.
@@ -71,7 +71,7 @@ Here, you will add detail to the drink order, simulating a customer configuring 
 
 5. The *WaitingCompletion* event is emitted to the Serverlesspresso event bus. The event is routed to the *WaitingCompletion* Lambda function, which updates the [serverlesspresso-order-table](https://console.aws.amazon.com/dynamodbv2/home?#item-explorer?initialTagKey=&maximize=true&table=serverlesspresso-order-table) with the newly generated *orderNumber* and `TaskToken`.
 
-6. To veryify this, go to the [serverlesspresso-order-table](https://console.aws.amazon.com/dynamodbv2/home?#item-explorer?initialTagKey=&maximize=true&table=serverlesspresso-order-table). You can see a new column *orderNumber*, containing the human-readable order number.
+6. To verify this, go to the [serverlesspresso-order-table](https://console.aws.amazon.com/dynamodbv2/home?#item-explorer?initialTagKey=&maximize=true&table=serverlesspresso-order-table). You can see a new column *orderNumber*, containing the human-readable order number.
 
 7. In the OrderProcessor tab, the workflow has paused at this step until the barista notifies the application that the order has been completed.
 
@@ -106,4 +106,4 @@ In the OrderProcessor tab, the execution also completes:
 
 ### Next steps
 
-You have completed the end-to-end backend test for the workflows. In the next module, you will configure a new rule to route event back to the frontend applications. You will be able to run a complete test from the frontend applications.
+You have completed the end-to-end backend test for the workflows. In the next module, you will configure a new rule to route events back to the frontend applications. You will be able to run a complete test from the frontend applications.

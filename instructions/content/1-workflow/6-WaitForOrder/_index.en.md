@@ -160,7 +160,7 @@ In this section, you will test the changes to the workflow.
 }
 ```
 
-3. The console shows the *Execution status* of *Running*. The left side shows the flow of execution with the green states showing the actual path. The blue state shows when executed is suspended, pending a callback.
+3. The console shows the *Execution status* of *Running*. The left side shows the flow of execution with the green states showing the actual path. The blue state shows when execution is suspended, pending a callback.
 
 ![Execution results](../images/se-mod1-wait11.png)
 
@@ -190,9 +190,9 @@ The console shows that the execution is now finished for the workflow.
 
 ### Recap
 
-- In this section, you added state transitions that wait for a callback token before continues. This allow the workflow to wait for the customer to place the order, and for the barista to make the drinks.
+- In this section, you added state transitions that wait for a callback token before continuing. This allows the workflow to wait for the customer to place the order, and for the barista to make the drinks.
 - You used the heartbeat attribute to set timeout values for each of these wait conditions.
-- You tested this new feature in the console and saw how the executed waited. You then used a CLI command to return the callback token to make the execution continue.
+- You tested this new feature in the console and saw how the execution waited. You then used a CLI command to return the callback token to make the execution continue.
 
 ### Next steps
 

@@ -6,7 +6,7 @@ weight = 13
 
 Until now, you have manually started the `OrderProcessor` workflow from the [Step Functions console](https://console.aws.amazon.com/states/home).
 
-In production, the workflow is started by an event generated from the *Validator service*. The event is emitted each time a QR code is scannned by a customer.
+In production, the workflow is started by an event generated from the *Validator service*. The event is emitted each time a QR code is scanned by a customer.
 
 * You will create a new rule in [Amazon EventBridge](https://aws.amazon.com/eventbridge/) that passes the Validator event to your OrderProcessor workflow.
 * You will test the new rule by mocking the event sent from the Validator service.
@@ -35,7 +35,7 @@ In this section, you will build the rule that listens to the `Validator.NewOrder
 }
 ```
 
-5. Choose **save**.
+5. Choose **Save**.
 
 6. In the *Select targets* section, choose *Step Functions state machine*.
 
@@ -68,11 +68,11 @@ This starts a new execution in the `OrderProcessor` workflow.
 
 ![Execution results](../images/se-mod2-NewOrder2.png)
 
-4. Choose the latest execution from the *Name* column. The console shows the *Execution status* of *Running*. The left side shows the flow of execution with the green states showing the actual path. The blue state shows when executed is suspended, pending a callback.
+4. Choose the latest execution from the *Name* column. The console shows the *Execution status* of *Running*. The left side shows the flow of execution with the green states showing the actual path. The blue state shows when execution is suspended, pending a callback.
 
 ![Execution results](../images/se-mod1-wait11.png)
 
-The new rule has sucessfully routed the `NewOrder` event to the `OrderProcessor` workflow. In the next step, you create a rule that routes the `WorkflowStarted` event to an [AWS Lambda](https://aws.amazon.com/lambda/) function.
+The new rule has successfully routed the `NewOrder` event to the `OrderProcessor` workflow. In the next step, you create a rule that routes the `WorkflowStarted` event to an [AWS Lambda](https://aws.amazon.com/lambda/) function.
 
 ### Recap
 

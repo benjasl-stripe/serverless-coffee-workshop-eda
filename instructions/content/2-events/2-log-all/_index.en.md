@@ -14,7 +14,7 @@ An event is a change in state, or an update, like an order being placed on the c
 
 Event-driven architectures have three key components: event producers, event routers, and event consumers. A producer publishes an event to the router, which filters and pushes the events to consumers. Producer services and consumer services are decoupled, which allows them to be scaled, updated, and deployed independently.
 
-Events are ephemeral in nature, meaning that they are not stored when recieved. It's often useful to log events and their state for later inspection and playback.
+Events are ephemeral in nature, meaning that they are not stored when received. It's often useful to log events and their state for later inspection and playback.
 
 ## Creating the "Log All" rule
 
@@ -61,7 +61,7 @@ In this section, you will test that the rule logs all Serverlesspresso events to
 
 1. From the [AWS Step Functions console] (https://console.aws.amazon.com/states/), select the *OrderProcessorWorkflow* you created earlier.
 
-2. From the section at top of the the page showing the workflow, choose **Start execution**.
+2. From the section at top of the page showing the workflow, choose **Start execution**.
 
 ![Start execution](../images/se-mod2-logAll8.png)
 
@@ -97,7 +97,7 @@ Since this event is emitted to the `Serverlesspresso` event bus and contains the
 
 8. Each event is logged to a separate log stream. Choose the first log stream.
 
-9. From the *Target(s)* section, choose the target named **severlesspressoEventBus**, then choose first row in the *Log Stream* section. Expand the arrow next to the timestamp.
+9. From the *Target(s)* section, choose the target named **severlesspressoEventBus**, then choose the first row in the *Log Stream* section. Expand the arrow next to the timestamp.
 
 ![Execution results](../images/se-mod2-logAll2.png)
 
@@ -107,9 +107,9 @@ From now on, any event that is emitted to the `Serverlesspresso` custom event bu
 
 ### Recap
 
-- For debugging purposes, it can be useful to log every event processed by a custom event bus. In this section, you created a catch-all rules that outputs every event to CloudWatch Logs.
+- For debugging purposes, it can be useful to log every event processed by a custom event bus. In this section, you created a catch-all rule that outputs every event to CloudWatch Logs.
 - You generated a test event by running the workflow from module 1 and saw the logged event in CloudWatch Logs.
 
 ### Next steps
 
-Next, you'll create a rule that routes events from the Validator service to the the order workflow.
+Next, you'll create a rule that routes events from the Validator service to the order workflow.

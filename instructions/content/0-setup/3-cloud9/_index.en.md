@@ -7,7 +7,7 @@ weight = 13
 
 Your Cloud9 environment will have access to the same AWS resources as the user with which you logged into the AWS Management Console. We strongly recommend using Cloud9 to complete this workshop.
 
-Take a few minutes now and setup your Cloud9 development environment. Cloud9 works best with Chrome or Firefox, not Safari. It cannot be used from a tablet.
+Take a few minutes now and set up your Cloud9 development environment. Cloud9 works best with Chrome or Firefox, not Safari. It cannot be used from a tablet.
 
 ## Starting AWS Cloud9 ##
 
@@ -21,7 +21,7 @@ Take a few minutes now and setup your Cloud9 development environment. Cloud9 wor
 
 4. Select **Next step**.
 
-5. For *Instance type*, select a **t3.small**. You may leave the other **Environment settings** at their defaults for a EC2 instance based on Amazon Linux 2 which will be paused after **30 minutes** of inactivity. Select **Next step**.
+5. For *Instance type*, select a **t3.small**. You may leave the other **Environment settings** at their defaults for an EC2 instance based on Amazon Linux 2 which will be paused after **30 minutes** of inactivity. Select **Next step**.
 
 ![Cloud9 instance](../images/setup4.png)
 
@@ -31,7 +31,7 @@ Take a few minutes now and setup your Cloud9 development environment. Cloud9 wor
 
 ![Cloud9](../images/setup5.png)
 
-You can run AWS CLI commands in here just like you would on your local computer. Remember for this workshop to run all commands within the Cloud9 terminal window instead of your local computer.
+You can run AWS CLI commands here just like you would on your local computer. Remember for this workshop to run all commands within the Cloud9 terminal window instead of your local computer.
 
 Keep your AWS Cloud9 IDE opened in a browser tab throughout this workshop.
 
