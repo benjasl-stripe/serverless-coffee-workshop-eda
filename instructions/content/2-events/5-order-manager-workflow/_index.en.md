@@ -25,12 +25,10 @@ Resume the *OrderProcessor* workflow by running the *OrderManager* workflow:
 
 2. Select *State machines* from the left panel, then choose *OrderManagerWorkflow*. Choose *Start execution*.
 
-![The Order manager workflow](../images/se-mod3-events5-1.png)
-
 3. Enter the following into the **Input** text area and choose *Start execution*:
 
 ```
-{"action":"","body":{"userId":"1","drink":"Cappuccino","modifiers":[],"icon":"barista-icons_cappuccino-alternative"},"orderId":"2","baristaUserId":"3"}
+{"action":"","body":{"userId":"1","drink":"Cappuccino","modifiers":[],"icon":"barista-icons_cappuccino-alternative"},"orderId":"1","baristaUserId":"3"}
 ```
 ![The Order manager workflow](../images/s3-mod3-events5-2.png)
 

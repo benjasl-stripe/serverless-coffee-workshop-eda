@@ -370,6 +370,7 @@ Resources:
       Environment:
         Variables:
           EventBusName: !Ref ServerlesspressoEventBus
+          Source: !Ref Source
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref ConfigTable
