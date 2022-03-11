@@ -296,7 +296,7 @@ Resources:
     Description: Serverlesspresso Publisher. Invoked by EventBridge rule
     Properties:
       CodeUri: ../backends/6-publisher-service/code/
-      Handler: publishToIOT.handler
+      Handler: publishToIOTuserTopic.handler
       Runtime: nodejs14.x
       Timeout: 3
       Environment:
