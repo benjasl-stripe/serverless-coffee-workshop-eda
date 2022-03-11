@@ -5,7 +5,7 @@ weight = 15
 
 ## Overview
 
-* You will modify the workflow add an order number to each coffee order.
+* You will modify the workflow and add an order number to each coffee order.
 * To do this, you will add a state that increments a counter value in a DynamoDB table and uses this for the current execution.
 * You will test the new workflow and see the input and output payloads.
 

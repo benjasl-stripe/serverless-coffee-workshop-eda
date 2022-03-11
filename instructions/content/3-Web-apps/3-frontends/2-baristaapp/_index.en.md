@@ -3,7 +3,7 @@ title = "The Barista App"
 weight = 12
 +++
 
-The Barista App runs on a tablet next to coffee bar and it's operated by the barista. It provides a list of upcoming orders and enables the barista to mark incoming orders as completed or canceled.
+The Barista App runs on a tablet next to the coffee bar and it's operated by the barista. It provides a list of upcoming orders and enables the barista to mark incoming orders as completed or canceled.
 
 ## Inside this section
 
@@ -11,7 +11,7 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 - The hosted UI presents a configuration page when you first visit this URL.
 - After entering the configuration settings, it stores these in the browser's local cache.
-- The setting you use are not visible to anyone else visiting the same URL.
+- The settings you use are not visible to anyone else visiting the same URL.
 
 *Source code for this application:*
 * [The Barista App](#)
@@ -46,7 +46,7 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 ![Barista App](/images/se-mod3-frontends-barista4.png)
 
-Note the three admin buttons provided on the tool bar:
+Note the three admin buttons provided on the toolbar:
 
 * **Open store**: This toggles the store open state between *Open* and *Closed*. When the store is closed, the Order App cannot place any new orders.
 * **Clear settings**: Empties the local settings cache and clears the backend settings. This causes the *Settings* page to be displayed the next time the page reloads. Use this if you want to change your backend settings.

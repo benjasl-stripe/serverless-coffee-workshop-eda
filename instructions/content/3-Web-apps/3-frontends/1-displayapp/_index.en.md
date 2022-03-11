@@ -11,7 +11,7 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 - The hosted UI presents a configuration page when you first visit this URL.
 - After entering the configuration settings, it stores these in the browser's local cache.
-- The setting you use are not visible to anyone else visiting the same URL.
+- The settings you use are not visible to anyone else visiting the same URL.
 
 *Source code for this application:*
 * [The Display App ](#)
@@ -50,7 +50,7 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 ****************
 **NOTE FOR INTERNAL TESTING GROUP**
-At this point, go to the the Cognito console and add the new user to a group called "admin". The admin apps require this group membership and we've not yet had time to change it.
+At this point, go to the Cognito console and add the new user to a group called "admin". The admin apps require this group membership and we've not yet had time to change it.
 ****************
 
 6. The Display App is now shown.

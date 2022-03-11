@@ -14,7 +14,7 @@ There are three topics:
 2. User: the Customer App subscribes to this topic to get information related to the currently logged in user.
 3. Config: all apps subscribe to this topic for changes in the system configuration, such as when the menu or store state changes.
 
-There are three Lambda function, each publishing to a separate topic, and these have been deployed during the setup.
+There are three Lambda functions, each publishing to a separate topic, and these have been deployed during the setup.
 
 You will now configure 3 EventBridge rules to set up the routing of events to these Lambda functions.
 
