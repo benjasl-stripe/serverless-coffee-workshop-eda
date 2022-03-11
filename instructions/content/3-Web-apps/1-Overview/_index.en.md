@@ -20,7 +20,7 @@ In this module, you will set up each of these frontends, so you can perform an e
 
 ## Pushing messages back to the frontends with WebSockets
 
-Modern web applications commonly use the publish-subscribe pattern to receive notifications as data changes. From receiving alerts when new email arrives to providing dashboard analytics, this method allows for much richer streams of event from backend systems.
+Modern web applications commonly use the publish-subscribe pattern to receive notifications as data changes. From receiving alerts when new email arrives to providing dashboard analytics, this method allows for much richer streams of events from backend systems.
 
 The Serverlesspresso frontends use this pattern when listening for changes in order status. The frontends subscribe via the AWS SDK and then wait for messages published by the backend. The SDK automatically manages the WebSocket connection and also handles many common connectivity issues in web apps. The messages are categorized using topics, which are strings defining channels of messages.
 
@@ -60,4 +60,4 @@ aws iot describe-endpoint --endpoint-type iot:Data-ATS
 
 ![CloudFormation stack outputs](/images/se-mod3-backend-display3.png)
 
-Wherever the instructions reference the "Key" names, enter the corresponding "Value". The values unique identify resources in your backend stack.
+Wherever the instructions reference the "Key" names, enter the corresponding "Value". The values uniquely identify resources in your backend stack.

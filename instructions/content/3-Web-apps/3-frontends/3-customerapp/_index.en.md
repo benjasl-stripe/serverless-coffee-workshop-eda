@@ -11,7 +11,7 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 - The hosted UI presents a configuration page when you first visit this URL.
 - After entering the configuration settings, it stores these in the browser's local cache.
-- The setting you use are not visible to anyone else visiting the same URL.
+- The settings you use are not visible to anyone else visiting the same URL.
 
 *Source code for this application:*
 * [The Customer App ](#)
