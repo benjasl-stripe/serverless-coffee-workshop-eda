@@ -72,7 +72,7 @@ In this section, you add an EventBridge PutEvents state that emits an event when
 
 6. With the *Flow* tab selected on the left, drag the Pass state action from the list to the empty *Drop state here* placeholder in the designer.
 
-![Drag UpdateItem to designer](../images/se-mod1-wait5.png)
+![Drag UpdateItem to designer](../images/se-mod1-wait5b.png)
 
 7. With the state selected, the attribute panel on the right shows the configuration for this state.
 - In the *Configuration tab*, for *State Name*, enter `Customer timedout`.
