@@ -75,7 +75,27 @@ Here, you will add detail to the drink order, simulating a customer configuring 
 
 7. In the OrderProcessor tab, the workflow has paused at this step until the barista notifies the application that the order has been completed.
 
-## 3. Completing the order
+### 3. Claiming the order
+Next, use the OrderManager workflow to simulate the barista claiming the order.
+
+
+1. Go to the *OrderManager* workflow tab.
+
+2. Choose *Start execution*. Enter the following into the **input** text area and choose *Start execution*:
+
+```
+{
+  "action": "make",
+  "body": {},
+  "orderId": "2",
+  "baristaUserId": "3"
+}
+```
+
+3. The OrderManager workflow updates DynamoDB table with the barista's order ID and emits a new event.
+![claiming an order ](../images/se-mod2-WaitingCompletion8.png)
+
+## 4. Completing the order
 
 Finally, use the OrderManager workflow to simulate the barista completing the order.
 
