@@ -22,14 +22,14 @@ The coffee bar ordering process is as follows:
 
 ## Application structure
 
-You will be creating various microservices that integrate existing frontends with your back serverless application. You will be using AWS Step Functions to handle orchestration and Amazon EventBridge to handle choreography.
+You will be creating various microservices that integrate existing frontends with your backend serverless application. You will be using AWS Step Functions to handle orchestration and Amazon EventBridge to handle choreography.
 
 ### Frontends
 
 The frontends are already deployed. Once you have built the backend, you will provide environment variables to the frontends to enable them to connect. The three frontends are:
 
 * **Display app**: This is displayed on overhead monitors. It provides a barcode for customers to scan to place an order, and shows a realtime queue of upcoming and completed drink orders.
-* **Barista app**: This runs on tablets used by the baristas. The app allows baristas to change the status of a drink order, or cancel the order if needed. Updates from this application and propagated to the other apps.
+* **Barista app**: This runs on tablets used by the baristas. The app allows baristas to change the status of a drink order, or cancel the order if needed. Updates from this application are propagated to the other apps.
 * **Ordering app**: This is used by customers to place an order. It is designed to run on mobile devices. When you are testing today, you'll use your mobile device with this app to place orders.
 
 ### Backend
