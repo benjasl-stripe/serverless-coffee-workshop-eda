@@ -9,7 +9,7 @@ Some parts of the backend application have been developed already. In this secti
 
 * A Cognito configuration so users can log in from the frontends and be authenticated by the backend.
 * An Order Management service, which will keep track of the coffee orders.
-* TBD
+* A Publisher service, which sends events back to the frontend applications using AWS IoT Core.
 
 After you have deployed these back-end resources, you will then build the Step Functions workflow and set up the events that make the application work.
 
@@ -24,7 +24,7 @@ The backend is a set of serverless microservices. In this section, you will depl
 * The *OrderManager* microservice - Provides an API to send/update/cancel a coffee order. Consists of a DynamoDB table containing the state of each customer order.
 * The *Config* microservice - A DynamoDB table containing information about menu items and shop status, along with An [Amazon API Gateway](https://aws.amazon.com/apigateway) Resource to provide authenticated access.
 * The *Publishing* microservice - Routes events to different IoT core topics. IoT Core publishes event messages to front end applications.
-* The *Validator* microservice - Provides QR codes to front end display application, Codes are sotred in a DynamoDB table and used to validate each order.
+* The *Validator* microservice - Provides QR codes to front end display application, Codes are sorted in a DynamoDB table and used to validate each order.
 
 ## Cloning the GitHub repository ##
 
@@ -77,6 +77,8 @@ sam deploy --guided
 At the prompt, enter `serverlesspresso-backend` for *Stack Name*. You can accept the defaults for the other parameters.
 
 ![SAM setup](../images/setup8.png)
+
+If prompted to accept IAM changes, choose "Y". If prompt to deploy the changeset, choose "Y".
 
 This will take a few minutes to deploy. You can see the deployment progress in the console. Wait until you see the `Successfully created/updated stack - serverlesspresso-backend` confirmation message in the console before continuing.
 

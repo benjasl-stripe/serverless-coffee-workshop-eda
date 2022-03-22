@@ -42,7 +42,7 @@ In this section, you use an AWS SDK integration in Step Functions to query the s
 ```
 ![Drag GetItem to designer](../images/se-mod1-capacity3.png)
 
-3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
+3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the SDK call:
 - Check the box *Add original input to output using ResultPath*.
 - Ensure *Combine original input with result* is selected in the dropdown, then enter `$.isCapacityAvailable` in the value textbox.
 
@@ -164,7 +164,7 @@ The workflow must branch logic depending on the value returned by the ListExecut
 ![IAM role warning](../images/iam-role-warning.png)
 
 
-## Testing the Step Functions workflow.
+## Testing the Step Functions workflow
 
 In this section, you will test the changes to the workflow.
 

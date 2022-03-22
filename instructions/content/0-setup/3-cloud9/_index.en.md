@@ -50,9 +50,7 @@ You'll see output indicating your account and user information:
     "Arn": "arn:aws:iam::123456789012:user/Roxie"
 }
 ```
-9. Check the current AWS Region to make sure you are running the workshop in a supported Region.
-
-Run these commands in the Cloud9 terminal window:
+9. Check the current AWS Region to make sure you are running the workshop in a supported Region. Run these commands in the Cloud9 terminal window:
 ```bash
 AWS_REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')
 SUPPORTED_REGIONS=("us-west-2" "us-east-1" "us-east-2" "eu-central-1" "eu-west-1" "ap-southeast-2" "sa-east-1" "ap-northeast-1")
