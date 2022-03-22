@@ -152,7 +152,11 @@ The workflow must branch logic depending on the value read from the DynamoDB tab
 
 9. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
 
-## Testing the Step Functions workflow.
+10. In the *IAM role* popup, choose **Save anyway**. The IAM role you are using was deployed in the setup module and has the necessary permissions.
+
+![IAM role warning](../images/iam-role-warning.png)
+
+## Testing the Step Functions workflow
 
 In this section, you will test the new workflow.
 

@@ -63,10 +63,12 @@ The workflow must branch logic depending on the value returned by the ListExecut
 ![Edit choice state](../images/se-mod1-capacity6.png)
 
 5. In the *Conditions for rule #1* panel, specify the rule that will determine if the store is closed:
-- For *Not*, leave blank in the dropdown.
+- For *Not*, **leave blank** in the dropdown.
 - For *Variable*, enter `$.isCapacityAvailable.Executions[20]`.
 - For *Operator*, select **is present**.
 - Choose **Save conditions**.
+
+**Double-check that the NOT dropdown is blank before continuing**
 
 ![Edit conditions](../images/se-mod1-capacity7.png)
 
@@ -156,6 +158,10 @@ The workflow must branch logic depending on the value returned by the ListExecut
 10. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
 
 ![Drag GetItem to designer](../images/se-mod1-capacity10.png)
+
+11. In the *IAM role* popup, choose **Save anyway**. The IAM role you are using was deployed in the setup module and has the necessary permissions.
+
+![IAM role warning](../images/iam-role-warning.png)
 
 
 ## Testing the Step Functions workflow.

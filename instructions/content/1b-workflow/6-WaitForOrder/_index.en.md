@@ -141,7 +141,9 @@ In this section, you add an EventBridge PutEvents state that emits an event when
 
 8. Choose **Apply and exit**. In the Edit page, choose **Save**.
 
-## Testing the Step Functions workflow.
+9. Choose **Save anyway** in the IAM popup.
+
+## Testing the Step Functions workflow
 
 In this section, you will test the changes to the workflow.
 

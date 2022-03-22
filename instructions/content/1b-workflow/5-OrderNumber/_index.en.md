@@ -52,7 +52,7 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
 ```
 ![Configure UpdateItem](../images/se-mod1-ordernum2.png)
 
-3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
+6. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
 - Check the box *Add original input to output using ResultPath*.
 - In the value textbox, enter `$.Order.Payload`.
 - Check the box *Transform result with ResultSelector*.
@@ -66,7 +66,7 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
 
 ![Drag GetItem to designer](../images/se-mod1-ordernum3.png)
 
-4. Check the Amazon States Language (ASL) definition by choosing the Definition toggle button above the designer. The ASL appears as:
+7. Check the Amazon States Language (ASL) definition by choosing the Definition toggle button above the designer. The ASL appears as:
 
 ```
 {
@@ -172,11 +172,13 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
 }
 ```
 
-5. Choose **Apply and exit**. In the Edit page, choose **Save**.
+8. Choose **Apply and exit**. In the Edit page, choose **Save**.
 
-6. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
+9. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
 
-## Testing the Step Functions workflow.
+10. Choose **Save anyway** in the IAM popup.
+
+## Testing the Step Functions workflow
 
 In this section, you will test the changes to the workflow.
 

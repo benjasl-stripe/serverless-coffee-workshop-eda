@@ -3,7 +3,7 @@ title = "Overview"
 weight = 14
 +++
 
-The Serverlesspresso application consists of 3 frontends and a backend application. The frontends are already built and deployed. The backend is a set of serverless microservices. In this module, you will set up the environment and deploy resources needed to start building your backend.
+The Serverlesspresso application consists of three frontends and a backend application. The frontends are already built and deployed in an AWS-owned account. The backend is a set of serverless microservices. In this module, you will set up the environment and deploy resources needed to start building your backend.
 
 [![See Serverlesspresso](/images/se-setup-overview4.png)](https://youtu.be/M6lPZCRCsyA)
 
