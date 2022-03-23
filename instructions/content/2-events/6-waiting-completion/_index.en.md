@@ -11,19 +11,26 @@ You will now create a new rule to route this event to a Lambda function that wil
 ![Execution results](../images/se-mod2-WaitingCompletion1.png)
 
 ## Creating the "Waiting Completion" rule
+
 ### Step-by-step instructions ##
 
-1. Go to the EventBridge console. From the AWS Management Console, select *Services* then select EventBridge in *Application Integration*. **Make sure your region is correct**.
+1. Go to the EventBridge console. From the AWS Management Console, select *Services* then select EventBridge  *Application Integration*. **Make sure your region is correct**.
 
-2. Choose **Rules**. Select the event bus named **Serverlesspresso**. Choose **Create rule**.
+2. Choose **Rules**. Choose **Create rule**.
 
-![Create rule](../images/se-mod2-logAll10.png)
+3. In Step 1 of the wizard:
+- For the Name, enter *WaitingCompletion*.
+- For *Event bus*, enter `Serverlesspresso`.
+- Choose **Next**.
 
-3. For the *Name*, enter `WaitingCompletion`.
+![Create rule and add name](../images/se-mod2-waitCompletion-step1.png)
 
-4. Choose **Custom pattern**.
+4. In Step 2 of the wizard:
+- For *Event source*, select **Other**.
+- Ignore the *Sample event* panel.
+- In the *Event pattern* panel, paste the following:
+- Choose **Next**
 
-5. Copy-and-paste the following into the Event Pattern section:
 ```
 {
   "detail-type": ["OrderProcessor.WaitingCompletion"],
@@ -31,10 +38,26 @@ You will now create a new rule to route this event to a Lambda function that wil
 }
 ```
 
-6. Choose **Save**.
+5. In Step 3 of the wizard:
+- In the *Target 1* panel, choose **AWS service**.
+- In the *Select a target* dropdown, choose *Lambda*
+- In the *Function* dropdown, choose the Serverlesspresso function containing the name `WaitingCompletion`. Tip: You can start typing "WaitingCompletion" into the field to find the function.
+- Choose **Next**.
 
-7. In the *Select targets* section, choose *Lambda*
+![Select targets panel](../images/se-mod2-waitCompletion-step3.png)
 
-8. In the Lambda section, choose the Serverlesspresso function containing the name `WaitingCompletion`. Tip: You can start typing "WaitingCompletion" into the field to find the function.
+6. In Step 4 of the wizard, choose **Next**.
 
-9. Choose **Create**.
+7. In Step 5 of the wizard, check that the *Define rule detail* panel that the *Event bus* is `Serverlesspresso`. Choose **Create rule**.
+
+## Review the list of rules
+
+In this section, you created 4 EventBridge rules on the Serverlesspresso event bus. On the *Rules* page, change the *Event bus* dropdown to `Serverlesspresso` and verify that you see all 4 rules listed.
+
+![Verify rules](../images/se-mod2-verifyRules.png)
+
+{{% notice tip %}}
+
+If you created a rule on the default bus instead, review the previous steps in this module to add the rules to the custom bus.
+
+{{% /notice %}}

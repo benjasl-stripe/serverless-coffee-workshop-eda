@@ -12,42 +12,15 @@ After this section, you will have a workflow that is ready to support the drink 
 
 ## 1. Testing the workflow with the store open
 
-The shop's state is stored in the DynamoDB configuration table for the application. The *Is the shop open?* transition checks this value and uses a Step Functions choice state to determine the flow. Here, you will toggle this state and run executions to test the outcome.
+First, test the workflow with the store open, which is the default state when you run the setup module.
 
 ### Step-by-step instructions ##
 
-1. Go to the DynamoDB console. From the AWS Management Console, select *Services* then select DynamoDB under *Database*. Make sure your region is correct.
+1. Go to the Step Functions console. From the AWS Management Console, select *Services* then select Step Functions under *Application Integration*. **Make sure your region is correct**.
 
-2. From the left-hand menu, choose *Explore items* in the *Tables* menu. Choose **serverlesspresso-config-table** in the *Tables* list.
+2. Under *State machines*, select *OrderProcessorWorkflow*. On the page showing the workflow, choose **Start execution**.
 
-![DynamoDB table view](../images/se-mod1-testing0.png)
-
-The items in the table provide state information for different parts of the application:
-- **menu**: Used by the customer ordering frontend to display a valid list of drinks and modifiers for ordering.
-- **config**: Contains general settings, including whether the store is open or closed.
-
-3. Choose the *config* item in the *Items returned* panel. This opens the item editor.
-
-![Config item](../images/se-mod1-testing1.png)
-
-4. Set the store to open. Paste the following JSON, which sets `storeOpen` to `true`.
-
-```
-{
- "PK": "config",
- "storeOpen": true,
- "maxOrdersPerUser": 1,
- "maxOrdersInQueue": 10
-}
-```
-
-5. Choose **Save changes** to update the table.
-
-6. Go to the Step Functions console. From the AWS Management Console, select *Services* then select Step Functions under *Application Integration*. **Make sure your region is correct**.
-
-7. Under *State machines*, select *OrderProcessorWorkflow*. On the page showing the workflow, choose **Start execution**.
-
-8. In the *Start execution* pop-up, enter the following JSON payload, then choose **Start execution**:
+3. In the *Start execution* pop-up, enter the following JSON payload, then choose **Start execution**:
 
 ```
 {
@@ -58,13 +31,13 @@ The items in the table provide state information for different parts of the appl
 }
 ```
 
-9. The *Graph inspector* shows the workflow path taken as a result of the store being open.
+4. The *Graph inspector* shows the workflow path taken as a result of the store being open.
 
 ![Store is open](../images/se-mod1-testing2.png)
 
 ## 2. Testing the workflow with the store closed
 
-Now you will toggle this state value in the DynamoDB table and start another execution to test the outcome.
+The shop's state is stored in the DynamoDB configuration table for the application. The *Is the shop open?* transition checks this value and uses a Step Functions choice state to determine the flow. Here, you will toggle this state and run executions to test the outcome.
 
 ### Step-by-step instructions ##
 
@@ -74,7 +47,7 @@ Now you will toggle this state value in the DynamoDB table and start another exe
 
 ![DynamoDB table view](../images/se-mod1-testing0.png)
 
-3. Choose the *config* item in the *Items returned* panel. This opens the item editor.
+3. Choose the *config* item in the *Items returned* panel. This opens the item editor. Choose **JSON** and disable *View DynamoDB JSON*.
 
 ![Config item](../images/se-mod1-testing1.png)
 
@@ -122,7 +95,7 @@ The workflow has emitted an event indicating that the shop is unavailable. This 
 
 13. Choose the *config* item in the *Items returned* panel. This opens the item editor.
 
-14. Set the store to open. Paste the following JSON, which sets `storeOpen` to `true`.
+14. Set the store back to open. Paste the following JSON, which sets `storeOpen` to `true`.
 
 ```
 {

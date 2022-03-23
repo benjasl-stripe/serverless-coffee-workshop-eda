@@ -22,17 +22,26 @@ In this section:
 * You will test the new rule and see the Lambda function input payload and response.
 
 ## Creating the Workflow Started rule
+
 ### Step-by-step instructions ##
 
-1. Go to the EventBridge console. From the AWS Management Console, select *Services* then select EventBridge in *Application Integration*. **Make sure your region is correct**.
+1. Go to the EventBridge console. From the AWS Management Console, select *Services* then select EventBridge  *Application Integration*. **Make sure your region is correct**.
 
-2. Choose **Rules**. Select the event bus named **Serverlesspresso**. Choose **Create rule**.
+2. Choose **Rules**. Choose **Create rule**.
 
-![Create rule](../images/se-mod2-logAll10.png)
+3. In Step 1 of the wizard:
+- For the Name, enter *WorkflowStarted*.
+- For *Event bus*, enter `Serverlesspresso`.
+- Choose **Next**.
 
-3. For the Name, enter *WorkflowStarted*.
+![Create rule and add name](../images/se-mod2-workflowStarted-step1.png)
 
-4. Choose **Custom pattern**. Copy and paste the following into the *Event Pattern* section:
+4. In Step 2 of the wizard:
+- For *Event source*, select **Other**.
+- Ignore the *Sample event* panel.
+- In the *Event pattern* panel, paste the following:
+- Choose **Next**
+
 ```
 {
   "detail-type": ["OrderProcessor.WorkflowStarted"],
@@ -40,17 +49,19 @@ In this section:
 }
 ```
 
-5. Choose **Save**.
+5. In Step 3 of the wizard:
+- In the *Target 1* panel, choose **AWS service**.
+- In the *Select a target* dropdown, choose *Lambda*
+- In the *Function* dropdown, choose the Lambda function containing the name `WorkflowStarted`  from the *Function* dropdown. This was deployed by the core stack in the setup module. Tip: you can start typing "WorkflowStarted" into the field to find the function.
+- Choose **Next**.
 
-![Save custom pattern](../images/se-mod2-workflowStarted6.png)
+![Select targets panel](../images/se-mod2-workflowStarted-step3.png)
 
-6. In the *Select targets* section, select *Lambda function* in the first dropdown. In the *Function* dropdown, choose the Lambda function containing the name `WorkflowStarted`  from the *Function* dropdown. This was deployed by the core stack in the setup module. Tip: you can start typing "WorkflowStarted" into the field to find the function.
+6. In Step 4 of the wizard, choose **Next**.
 
-![Select targets](../images/se-mod2-workflowStarted5.png)
+7. In Step 5 of the wizard, check that the *Define rule detail* panel that the *Event bus* is `Serverlesspresso`. Choose **Create rule**.
 
-7. Choose **Create**. The new rule appears in the *Rules* panel.
 
-![Select targets](../images/se-mod2-workflowStarted7.png)
 
 ## Testing the "WorkflowStarted" EventBridge rule
 

@@ -22,9 +22,9 @@ The backend is a set of serverless microservices. In this section, you will depl
 
 * The *Counting* microservice:  An [Amazon DynamoDB](https://aws.amazon.com/dynamodb) table for persisting Order numbers.
 * The *OrderManager* microservice - Provides an API to send/update/cancel a coffee order. Consists of a DynamoDB table containing the state of each customer order.
-* The *Config* microservice - A DynamoDB table containing information about menu items and shop status, along with An [Amazon API Gateway](https://aws.amazon.com/apigateway) Resource to provide authenticated access.
-* The *Publishing* microservice - Routes events to different IoT core topics. IoT Core publishes event messages to front end applications.
-* The *Validator* microservice - Provides QR codes to front end display application, Codes are sorted in a DynamoDB table and used to validate each order.
+* The *Config* microservice - Uses a DynamoDB table containing information about menu items and shop status, along with an [Amazon API Gateway](https://aws.amazon.com/apigateway) resource to provide authenticated access.
+* The *Publisher* microservice - Routes events to different IoT core topics. IoT Core publishes event messages to front end applications.
+* The *QR Validator* microservice - Provides QR codes to front end display application, Codes are sorted in a DynamoDB table and used to validate each order.
 
 ## Cloning the GitHub repository ##
 
@@ -99,14 +99,14 @@ Copy these outputs from the stack to a scratch file, notepad or text editor for 
 
 5. SAM has now used CloudFormation to deploy a stack of backend resources which will be used for the rest of the workshop.
 
-* 2 Lambda functions
+* Multiple Lambda functions
 * 3 S3 buckets
-* A DynamoDB tables
+* A DynamoDB table
 * A Cognito UserPool
 * An AWS IoT thing
 * Step Functions workflows
 * EventBridge custom event bus
-* Several IAM roles and policies.
+* Several IAM roles and policies
 
 ### Recap
 

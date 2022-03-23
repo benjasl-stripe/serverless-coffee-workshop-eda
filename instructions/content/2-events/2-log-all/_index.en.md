@@ -24,34 +24,39 @@ Create a rule that logs every event through the application's custom bus to Clou
 
 1. Go to the EventBridge console. From the AWS Management Console, select *Services* then select EventBridge  *Application Integration*. **Make sure your region is correct**.
 
-2. Choose **Rules**.
+2. Choose **Rules**. Choose **Create rule**.
 
 ![Rules menu](../images/se-mod2-logAll3.png)
 
-3. Choose the event bus named **Serverlesspresso**.
+3. In Step 1 of the wizard:
+- For the Name, enter *logAll*.
+- For *Event bus*, enter `Serverlesspresso`.
+- Choose **Next**.
 
-![Rules menu](../images/se-mod2-logAll4.png)
+![Create rule and add name](../images/se-mod2-logAll-step1.png)
 
-4. Choose **Create rule**. For the Name, enter *logAll*.
+4. In Step 2 of the wizard:
+- For *Event source*, select **Other**.
+- Ignore the *Sample event* panel.
+- In the *Event pattern* panel, paste the following:
+- Choose **Next**
 
-![Create rule and add name](../images/se-mod2-logAll5.png)
-
-5. In the *Define pattern* panel, choose **Custom pattern**. Paste the following into the *Event Pattern* section and choose **Save**.
 ```
 {
   "source": ["awsserverlessda.serverlesspresso"]
 }
 ```
 
-![Custom pattern](../images/se-mod2-logAll6.png)
-
-6. In the *Select targets* panel, choose *CloudWatch log group*
-
-7. In the *Log Group* field, enter  **serverlesspressoEventBus**.
+5. In Step 3 of the wizard:
+- In the *Target 1* panel, choose **AWS service**.
+- In the *Select a target* dropdown, choose *CloudWatch log group*
+- In the *Log Group* field, enter  **serverlesspressoEventBus**.
 
 ![Select targets panel](../images/se-mod2-logAll7.png)
 
-8. Choose **Create**.
+6. In Step 4 of the wizard, choose **Next**.
+
+7. In Step 5 of the wizard, check that the *Define rule detail* panel that the *Event bus* is `Serverlesspresso`. Choose **Create rule**.
 
 ## Testing the "Log All" EventBridge rule
 

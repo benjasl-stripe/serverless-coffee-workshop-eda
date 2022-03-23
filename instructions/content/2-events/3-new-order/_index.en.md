@@ -19,15 +19,23 @@ In this section, you will build the rule that listens to the `Validator.NewOrder
 
 ### Step-by-step instructions ##
 
-1. Go to the EventBridge console. From the AWS Management Console, select *Services* then select EventBridge in *Application Integration*. **Make sure your region is correct**.
+1. Go to the EventBridge console. From the AWS Management Console, select *Services* then select EventBridge  *Application Integration*. **Make sure your region is correct**.
 
-2. Choose **Rules**. Select the event bus named **Serverlesspresso**. Choose **Create rule**.
+2. Choose **Rules**. Choose **Create rule**.
 
-![Create rule](../images/se-mod2-logAll10.png)
+3. In Step 1 of the wizard:
+- For the Name, enter *NewOrder*.
+- For *Event bus*, enter `Serverlesspresso`.
+- Choose **Next**.
 
-3. For the Name, enter *NewOrder*.
+![Create rule and add name](../images/se-mod2-newOrder-step1.png)
 
-4. Choose **Custom pattern**. Copy-and-paste the following into the *Event Pattern* section:
+4. In Step 2 of the wizard:
+- For *Event source*, select **Other**.
+- Ignore the *Sample event* panel.
+- In the *Event pattern* panel, paste the following:
+- Choose **Next**
+
 ```
 {
   "detail-type": ["Validator.NewOrder"],
@@ -35,15 +43,17 @@ In this section, you will build the rule that listens to the `Validator.NewOrder
 }
 ```
 
-5. Choose **Save**.
+5. In Step 3 of the wizard:
+- In the *Target 1* panel, choose **AWS service**.
+- In the *Select a target* dropdown, choose *Step Functions state machine*
+- In the *State machine* dropdown, choose *OrderProcessorWorkflow*. Tip: You can start typing `OrderProcessor` into the search box to find the workflow.
+- Choose **Next**.
 
-6. In the *Select targets* section, choose *Step Functions state machine*.
+![Select targets panel](../images/se-mod2-newOrder-step3.png)
 
-7. In the State machine section, choose *OrderProcessorWorkflow*. Tip: You can start typing `OrderProcessor` into the search box to find the workflow.
+6. In Step 4 of the wizard, choose **Next**.
 
-8. Choose **Create**.
-
-![NewOrder rule created](../images/se-mod2-logAll11.png)
+7. In Step 5 of the wizard, check that the *Define rule detail* panel that the *Event bus* is `Serverlesspresso`. Choose **Create rule**.
 
 ## Testing the *"New Order"* rule
 

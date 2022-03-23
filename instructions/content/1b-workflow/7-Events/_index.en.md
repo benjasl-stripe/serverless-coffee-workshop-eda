@@ -28,7 +28,7 @@ In this section, you add an EventBridge PutEvents state that emits an event if e
 
 4. With the *Actions* tab selected on the left, enter `putevents` in the search bar. Drag the *Amazon EventBridge PutEvents* action from the list to between the *Customer timeout* and End states in the designer.
 
-![Drag UpdateItem to designer](../images/se-mod1-wait15.png)
+![Drag PutEvents to designer](../images/se-mod1-wait15.png)
 
 5. With the state selected, the attribute panel on the right shows the configuration for this state. In the *Configuration tab*:
 - For *State name*, enter **Emit - error timeout**.
@@ -53,7 +53,7 @@ In this section, you add an EventBridge PutEvents state that emits an event if e
 }
 ```
 
-![Drag UpdateItem to designer](../images/se-mod1-wait16.png)
+![Event configuration](../images/se-mod1-wait16.png)
 
 6. Connect the *Barista timeout* pass state to the *Emit - error timeout* state. Choose the *Barista timeout* state to open the attribute panel on the right. In the *Configuration* tab, change *Next state* to *Emit - error timeout*.
 
@@ -125,6 +125,8 @@ In this section, you update the EventBridge PutEvents state that was created ear
 ![Drag UpdateItem to designer](../images/se-mod1-wait20.png)
 
 3. Choose **Apply and exit**. In the Edit page, choose **Save**.
+
+4. In the *IAM role* popup, choose **Save anyway**.
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait22.png)
 
