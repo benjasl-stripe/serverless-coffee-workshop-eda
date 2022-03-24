@@ -86,7 +86,7 @@ While you wait, here's what the custom parameters do:
 
 - **AppName**: Used by all the resources to prefix variables and provide common naming, to make it easier to identify everything used by the application.
 - **Service**: The name of this service stack.
-- **LogRetentionInDays**: Defines how many days CloudWatch should keep log files. By default, this has no limit.
+- **LogRetentionInDays**: Defines how many days CloudWatch should keep log files. By default, this has no limit. The default used in this stack is 14 days.
 - **Source**: The source name used by events in this application. This helps us filter only for events produced by microservices in this workload.
 
 The *TimeInterval*, *CodeLength*, and *TokensPerBucket* values define how the barcode functionality works in the Display App in the frontend. With the default values here, the barcode represents a 10-character unique code that provides 10 drinks every 5 minutes. We'll cover this in more detail in the frontends section.
@@ -100,7 +100,7 @@ Copy these outputs from the stack to a scratch file, notepad or text editor for 
 5. SAM has now used CloudFormation to deploy a stack of backend resources which will be used for the rest of the workshop.
 
 * Multiple Lambda functions
-* 3 S3 buckets
+* An S3 bucket
 * A DynamoDB table
 * A Cognito UserPool
 * An AWS IoT thing

@@ -53,8 +53,6 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
 ![Configure UpdateItem](../images/se-mod1-ordernum2.png)
 
 6. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
-- Check the box *Add original input to output using ResultPath*.
-- In the value textbox, enter `$.Order.Payload`.
 - Check the box *Transform result with ResultSelector*.
 - In the value textbox, enter:
 
@@ -63,6 +61,9 @@ In this section, you use a DynamoDB integration in Step Functions to increment a
   "orderNumber.$": "$.Attributes.IDvalue.N"
 }
 ```
+- Check the box *Add original input to output using ResultPath*.
+- Ensure the dropdown is set to *Combine original input with result*.
+- In the value textbox, enter `$.Order.Payload`.
 
 ![Drag GetItem to designer](../images/se-mod1-ordernum3.png)
 

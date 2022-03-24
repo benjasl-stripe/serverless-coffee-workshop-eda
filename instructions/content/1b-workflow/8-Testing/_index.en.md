@@ -118,13 +118,13 @@ While Step Functions can scale to ten of thousands of current executions, the co
 
 2. From the left-hand menu, select *State machine* and choose **OrderProcessorWorkflow** from the list. Copy the ARN value to a scratchpad - you will need this value later. Choose **Edit**.
 
-3. Use the [StartExecution API](https://docs.aws.amazon.com/cli/latest/reference/stepfunctions/start-execution.html) to start a new workflow. In a terminal, enter the following command, replacing `YOUR_STATE_MACHINE_ARN` with the ARN copied in the previous step:
+3. Use the [StartExecution API](https://docs.aws.amazon.com/cli/latest/reference/stepfunctions/start-execution.html) to start a new workflow. In the Cloud9 tab, in the terminal panel, enter the following command, replacing `YOUR_STATE_MACHINE_ARN` with the ARN copied in the previous step:
 
 ```
 aws stepfunctions start-execution --state-machine-arn YOUR_STATE_MACHINE_ARN --input "{\"detail\":{\"orderId\":\"1\",\"userId\":\"testuser\"}}"
 ```
 
-4. Run the same command 20 more times. The capacity configured for the shop is 20. On the 21st execution, the capacity check in the workflow will fail.
+4. Run the same command 25 more times. The capacity configured for the shop is 20. After the 20th execution, the capacity check in the workflow will fail for subsequent requests.
 
 5. In the state machine view in the console, the *Graph inspector* shows the workflow path taken as a result of capacity being unavailable:
 

@@ -54,13 +54,13 @@ In this section, you add an EventBridge PutEvents state that emits an event when
 ```
 ![Drag UpdateItem to designer](../images/se-mod1-wait2.png)
 
-3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
+6. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
 - Check the box *Add original input to output using ResultPath*.
-- In the dropdown, select *Discard result and keep original text*.
+- In the dropdown, select *Discard result and keep original input*.
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait3.png)
 
-4. Choose the *Error handling* tab. Here, you add a catch state to handle any errors. In *Catch errors*, choose **Add new catcher**.
+7. Choose the *Error handling* tab. Here, you add a catch state to handle any errors. In *Catch errors*, choose **Add new catcher**.
 - For *Comment*, enter `Customer timed out`.
 - For *Errors*, select **States.Timeout**.
 - For *Fallback state*, select **Add new state**.
@@ -68,13 +68,13 @@ In this section, you add an EventBridge PutEvents state that emits an event when
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait4.png)
 
-5. On the *Error handling tab*, for *Heartbeat*, enter `900` seconds. This means that the workflow will time out if the callback is not received within 15 minutes.
+8. On the *Error handling tab*, for *Heartbeat*, enter `900` seconds. This means that the workflow will time out if the callback is not received within 15 minutes.
 
-6. With the *Flow* tab selected on the left, drag the Pass state action from the list to the empty *Drop state here* placeholder in the designer.
+9. With the *Flow* tab selected on the left, drag the Pass state action from the list to the empty *Drop state here* placeholder in the designer.
 
 ![Drag UpdateItem to designer](../images/se-mod1-wait5b.png)
 
-7. With the state selected, the attribute panel on the right shows the configuration for this state.
+10. With the state selected, the attribute panel on the right shows the configuration for this state.
 - In the *Configuration tab*, for *State Name*, enter `Customer timedout`.
 - In the *Output tab*, for *Result*, enter `"Customer timedout"`.
 
@@ -170,7 +170,7 @@ In this section, you will test the changes to the workflow.
 
 ![Execution results](../images/se-mod1-wait12.png)
 
-5. Use the SendTaskSuccess API callback to the workflow with the task token and continue execution. In a terminal, enter the following command, replacing `YOUR_TASK_TOKEN` with the token value:
+5. Use the SendTaskSuccess API callback to the workflow with the task token and continue execution. In the Cloud9 tab, in the terminal panel, enter the following command, replacing `YOUR_TASK_TOKEN` with the token value:
 
 ```
 aws stepfunctions send-task-success  --task-output '{"orderId":1}' --task-token YOUR_TASK_TOKEN
@@ -181,7 +181,7 @@ Execution continues to the next state waiting for a callback.
 
 6. In the *Execution event history* panel, open the *TaskScheduled* event for *Emit - Awaiting completion TT*. This displays the payload for this event. Copy the *TaskToken* value to a scratch pad.
 
-7. Use the SendTaskSuccess API callback to the workflow with the task token and continue execution. In a terminal, enter the following command, replacing `YOUR_TASK_TOKEN` with the token value:
+7. Use the SendTaskSuccess API callback to the workflow with the task token and continue execution. In the Cloud9 tab, in the terminal panel, enter the following command, replacing `YOUR_TASK_TOKEN` with the token value:
 
 ```
 aws stepfunctions send-task-success  --task-output '{"orderId":1}' --task-token YOUR_TASK_TOKEN

@@ -42,7 +42,7 @@ In this section, you use an AWS SDK integration in Step Functions to query the s
 ```
 ![Drag GetItem to designer](../images/se-mod1-capacity3.png)
 
-3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the SDK call:
+6. Choose the *Output* tab. Here, you will modify the state's output to include the result from the SDK call:
 - Check the box *Add original input to output using ResultPath*.
 - Ensure *Combine original input with result* is selected in the dropdown, then enter `$.isCapacityAvailable` in the value textbox.
 
@@ -62,7 +62,7 @@ The workflow must branch logic depending on the value returned by the ListExecut
 
 ![Edit choice state](../images/se-mod1-capacity6.png)
 
-5. In the *Conditions for rule #1* panel, specify the rule that will determine if the store is closed:
+3. In the *Conditions for rule #1* panel, specify the rule that will determine if the store is closed:
 - For *Not*, **leave blank** in the dropdown.
 - For *Variable*, enter `$.isCapacityAvailable.Executions[20]`.
 - For *Operator*, select **is present**.
@@ -72,15 +72,15 @@ The workflow must branch logic depending on the value returned by the ListExecut
 
 ![Edit conditions](../images/se-mod1-capacity7.png)
 
-6. Change *Then next state is* to **EventBridge PutEvents**. Choose **Close**.
+4. Change *Then next state is* to **EventBridge PutEvents**. Choose **Close**.
 
 ![Edit conditions](../images/se-mod1-capacity8.png)
 
-7. For *State name*, enter **Is capacity available?**.
+5. For *State name*, enter `Is capacity available?`.
 
 ![Edit conditions](../images/se-mod1-capacity9.png)
 
-8. Check the Amazon States Language (ASL) definition by choosing the **Definition** toggle button above the designer. The ASL appears as:
+6. Check the Amazon States Language (ASL) definition by choosing the **Definition** toggle button above the designer. The ASL appears as:
 
 ```
 {
@@ -153,13 +153,13 @@ The workflow must branch logic depending on the value returned by the ListExecut
   }
 }
 ```
-9. Choose **Apply and exit**.
+7. Choose **Apply and exit**.
 
-10. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
+8. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
 
 ![Drag GetItem to designer](../images/se-mod1-capacity10.png)
 
-11. In the *IAM role* popup, choose **Save anyway**. The IAM role you are using was deployed in the setup module and has the necessary permissions.
+9. In the *IAM role* popup, choose **Save anyway**. The IAM role you are using was deployed in the setup module and has the necessary permissions.
 
 ![IAM role warning](../images/iam-role-warning.png)
 
@@ -176,7 +176,7 @@ In this section, you will test the changes to the workflow.
 
 ![Execution results](../images/se-mod1-capacity11.png)
 
-3. Choose the *Step output* on the right side to see the output path for the choice state. In this, the Executions array in the isCapacityAvailable attribute is empty. This means there are no active executions, so there is capacity available, causing the workflow to go to the pass state.
+3. Choose the *Step output* on the right side to see the output path for the choice state. In this case, the Executions array in the isCapacityAvailable attribute shows one item. This means there is one active execution, so there is capacity available, causing the workflow to go to the pass state.
 
 ### Recap
 

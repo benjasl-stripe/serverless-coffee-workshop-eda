@@ -44,7 +44,7 @@ This was done by the *Resume Order Processor* step.
 
 See what happens if an item is ordered that is not on the menu:
 
-1. Go to the *OrderManager* workflow in the Step Functions console,
+1. Go to the *OrderManagerStateMachine* in the Step Functions console.
 1. Choose *Start execution*, enter the following into the **input** text area and choose *Start execution*:
 
 ```

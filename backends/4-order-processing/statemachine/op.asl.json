@@ -119,7 +119,7 @@
       "Type": "Pass",
       "Next": "Emit - order finished"
     },
-    
+
     "Barista timedout": {
       "Type": "Pass",
       "Result": "Barista timedout",
@@ -223,7 +223,7 @@
         "Entries": [
             {
               "Detail": {
-                "Message": "The Step functions workflow checks if the shop is open and has capacity to serve a new order by invoking a Lambda function that queries the Shop conig service. The shop was not ready, and so a 'not ready' event is emitted to cancel the current order.",
+                "Message": "The Step functions workflow checks if the shop is open and has capacity to serve a new order by invoking a Lambda function that queries the Shop config service. The shop was not ready, and so a 'not ready' event is emitted to cancel the current order.",
                 "userId.$": "$.detail.userId"
               },
               "DetailType": "OrderProcessor.ShopUnavailable",
@@ -234,7 +234,7 @@
       },
       "Next": "Emit - order finished"
     },
-    
+
     "Emit - order finished":{
       "Type": "Task",
       "Resource": "arn:aws:states:::events:putEvents",

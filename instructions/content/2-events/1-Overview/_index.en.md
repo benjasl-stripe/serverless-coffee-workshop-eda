@@ -9,7 +9,7 @@ In the simplest terms, an event is a signal that a system's state has changed. I
 
 Events are:
 * Facts: they are based on something that happened.
-* Immutable: they cannot be undone. For example, an event could be a coffee order. If you cancel the order, that is a separate cancellation event, and do not change the contents of the original event.
+* Immutable: they cannot be undone. For example, an event could be a new coffee order. If you cancel the order, that is a separate cancellation event, and does not change the contents of the original event.
 * Observable: microservices can subscribe to events they care about.
 * Temporal: the time of an event matters.
 

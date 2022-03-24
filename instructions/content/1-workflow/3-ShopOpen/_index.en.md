@@ -78,11 +78,15 @@ The workflow must branch logic depending on the value read from the DynamoDB tab
 
 ![Drag Pass state to designer](../images/se-mod1-open8.png)
 
-4. You have now defined a logic branch where one result routes to EventBridge and the other to the pass state. Next, define the decision logic in the choice state. Click on the choice state to open its attributes in the right side panel. For *Rule #1*, click on the edit icon. Choose **Add conditions**.
+4. You have now defined a logic branch where one result routes to EventBridge and the other to the pass state. Next, define the decision logic in the choice state. Click on the choice state to open its attributes in the right side panel. For *Rule #1*, click on the edit icon.
+
+![Edit rule icon](../images/se-mod1-edit-rule.png)
+
+5. Choose **Add conditions**.
 
 ![Edit choice state](../images/se-mod1-open9.png)
 
-5. In the *Conditions for rule #1* panel, specify the rule that will determine if the store is closed:
+6. In the *Conditions for rule #1* panel, specify the rule that will determine if the store is closed:
 - For *Not*, select **NOT** in the dropdown.
 - For *Variable*, enter `$.GetStore.Item.storeOpen.BOOL`. This JSONPath syntax specifies the storeOpen Boolean attribute from the DynamoDB query response.
 - For *Operator*, select **is equal to**.
@@ -91,11 +95,11 @@ The workflow must branch logic depending on the value read from the DynamoDB tab
 
 ![Edit conditions](../images/se-mod1-open10.png)
 
-6. For *State name*, add **Shop Open?**.
+7. For *State name*, add `Shop Open?`.
 
 ![Edit state name](../images/se-mod1-open11.png)
 
-7. Check the Amazon States Language (ASL) definition by choosing the **Definition** toggle button above the designer. The ASL appears as:
+8. Check the Amazon States Language (ASL) definition by choosing the **Definition** toggle button above the designer. The ASL appears as:
 
 ```
 {
@@ -146,13 +150,13 @@ The workflow must branch logic depending on the value read from the DynamoDB tab
   }
 }
 ```
-8. Choose **Apply and exit**.
+9. Choose **Apply and exit**.
 
 ![Drag GetItem to designer](../images/se-mod1-open12.png)
 
-9. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
+10. In the *Edit OrderProcessorWorkflow* page, choose **Save**.
 
-10. In the *IAM role* popup, choose **Save anyway**. The IAM role you are using was deployed in the setup module and has the necessary permissions.
+11. In the *IAM role* popup, choose **Save anyway**. The IAM role you are using was deployed in the setup module and has the necessary permissions.
 
 ![IAM role warning](../images/iam-role-warning.png)
 

@@ -112,7 +112,7 @@ In this section, you update the EventBridge PutEvents state that was created ear
   "Entries": [
     {
       "Detail": {
-        "Message": "The Step functions workflow checks if the shop is open and has capacity to serve a new order by invoking a Lambda function that queries the Shop conig service. The shop was not ready, and so a 'not ready' event is emitted to cancel the current order.",
+        "Message": "The Step functions workflow checks if the shop is open and has capacity to serve a new order by invoking a Lambda function that queries the Shop config service. The shop was not ready, and so a 'not ready' event is emitted to cancel the current order.",
         "userId.$": "$.detail.userId"
       },
       "DetailType": "OrderProcessor.ShopUnavailable",
