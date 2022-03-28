@@ -290,6 +290,19 @@ Resources:
             Action:
               - iot:Connect
               - iot:Publish
+      Events:
+        Trigger:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: !Ref CoreEventBusName
+            Pattern:
+              source:
+                - !Ref Source
+              detail-type:
+                - prefix: 'OrderManager.'
+                - prefix: 'OrderProcessor.'
+                - prefix: 'Validator.'
+                - prefix: 'ConfigService.'
 
   PublisherFunctionUser:
     Type: AWS::Serverless::Function
@@ -310,6 +323,25 @@ Resources:
             Action:
               - iot:Connect
               - iot:Publish
+      Events:
+        OrderManagerEvents:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: !Ref CoreEventBusName
+            Pattern:
+              source:
+                - !Ref Source
+              detail-type:
+                - prefix: 'OrderManager.'
+        OrderProcessorEvents:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: !Ref CoreEventBusName
+            Pattern:
+              source:
+                - !Ref Source
+              detail-type:
+                - prefix: 'OrderProcessor.'
 
   PublisherFunctionConfig:
     Type: AWS::Serverless::Function
@@ -330,7 +362,16 @@ Resources:
             Action:
               - iot:Connect
               - iot:Publish
-
+      Events:
+        TriggerValidator:
+          Type: EventBridgeRule
+          Properties:
+            EventBusName: !Ref CoreEventBusName
+            Pattern:
+              source:
+                - !Ref Source
+              detail-type:
+                - prefix: 'ConfigService.'
 
 ##########################################
 # Config service                         #

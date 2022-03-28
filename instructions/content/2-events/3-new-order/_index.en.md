@@ -47,6 +47,7 @@ In this section, you will build the rule that listens to the `Validator.NewOrder
 - In the *Target 1* panel, choose **AWS service**.
 - In the *Select a target* dropdown, choose *Step Functions state machine*
 - In the *State machine* dropdown, choose *OrderProcessorWorkflow*. Tip: You can start typing `OrderProcessor` into the search box to find the workflow.
+- For *Execution role*, ensure *Create a new role for the specific resource* is selected.
 - Choose **Next**.
 
 ![Select targets panel](../images/se-mod2-newOrder-step3.png)

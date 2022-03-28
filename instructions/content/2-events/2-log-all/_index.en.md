@@ -85,7 +85,7 @@ In this section, you will test that the rule logs all Serverlesspresso events to
 
 ![Execution results](../images/se-mod1-wait11.png)
 
-4. In the *Execution event history* panel, open the *TaskScheduled* event for *Emit - Awaiting completion TT*. This displays the payload for this event. The event detail information is also displayed here. It contains:
+4. In the *Execution event history* panel, open the *TaskScheduled* event for *Emit - Workflow Started TT*. This displays the payload for this event. The event detail information is also displayed here. It contains:
   * The name of the event bus *EventBusName* that the event is emitted to (`serverlesspresso`).
   * The event *Source* (`awsserverlessda.serverlesspresso`).
   * The event `DetailType` (`OrderProcessor.WorkflowStarted`).
