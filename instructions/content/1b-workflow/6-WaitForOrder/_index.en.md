@@ -78,6 +78,8 @@ In this section, you add an EventBridge PutEvents state that emits an event when
 - In the *Configuration tab*, for *State Name*, enter `Customer timedout`.
 - In the *Output tab*, for *Result*, enter `"Customer timedout"`.
 
+![Renamed pass state](../images/se-mod1-wait5c.png)
+
 ## 2. Adding a callback state for baristas to make an order
 
 In this section, you add an EventBridge PutEvents state that emits an event when the callback is complete. The workflow waits here until the callback is received. This happens when the barista makes a drink order.
@@ -113,7 +115,7 @@ In this section, you add an EventBridge PutEvents state that emits an event when
 ```
 ![Drag UpdateItem to designer](../images/se-mod1-wait7.png)
 
-3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the DynamoDB query:
+3. Choose the *Output* tab. Here, you will modify the state's output to include the result from the process that restarts the workflow (the order):
 - Check the box *Add original input to output using ResultPath*.
 - In the dropdown, select *Combine original input with result*.
 - In the value textbox, enter `$.order`.
@@ -137,7 +139,7 @@ In this section, you add an EventBridge PutEvents state that emits an event when
 
 7. With the state selected, the attribute panel on the right shows the configuration for this state.
 - In the *Configuration tab*, for *State Name*, enter `Barista timedout`.
-- In the *Output tab*, for *Result*, enter `"Barista timedout"`.
+- In the *Output tab*, for *Result*, enter `"Barista timedout"` (including the quotes).
 
 8. Choose **Apply and exit**. In the Edit page, choose **Save**.
 
