@@ -294,7 +294,7 @@ Resources:
         Trigger:
           Type: EventBridgeRule
           Properties:
-            EventBusName: !Ref CoreEventBusName
+            EventBusName: "Serverlesspresso"
             Pattern:
               source:
                 - !Ref Source
@@ -327,7 +327,7 @@ Resources:
         OrderManagerEvents:
           Type: EventBridgeRule
           Properties:
-            EventBusName: !Ref CoreEventBusName
+            EventBusName: "Serverlesspresso"
             Pattern:
               source:
                 - !Ref Source
@@ -336,7 +336,7 @@ Resources:
         OrderProcessorEvents:
           Type: EventBridgeRule
           Properties:
-            EventBusName: !Ref CoreEventBusName
+            EventBusName: "Serverlesspresso"
             Pattern:
               source:
                 - !Ref Source
@@ -366,7 +366,7 @@ Resources:
         TriggerValidator:
           Type: EventBridgeRule
           Properties:
-            EventBusName: !Ref CoreEventBusName
+            EventBusName: "Serverlesspresso"
             Pattern:
               source:
                 - !Ref Source

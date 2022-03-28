@@ -20,7 +20,7 @@ Each of the following sections provides an implementation overview and detailed,
 [![See Serverlesspresso](/images/se-setup-overview4.png)](https://youtu.be/M6lPZCRCsyA)
 The backend is a set of serverless microservices. In this section, you will deploy the following:
 
-* The *Counting* microservice:  An [Amazon DynamoDB](https://aws.amazon.com/dynamodb) table for persisting Order numbers.
+* The *Counting* microservice - Uses an [Amazon DynamoDB](https://aws.amazon.com/dynamodb) table for incrementing order numbers sequentially.
 * The *OrderManager* microservice - Provides an API to send/update/cancel a coffee order. Consists of a DynamoDB table containing the state of each customer order.
 * The *Config* microservice - Uses a DynamoDB table containing information about menu items and shop status, along with an [Amazon API Gateway](https://aws.amazon.com/apigateway) resource to provide authenticated access.
 * The *Publisher* microservice - Routes events to different IoT core topics. IoT Core publishes event messages to front end applications.
@@ -78,7 +78,9 @@ At the prompt, enter `serverlesspresso-backend` for *Stack Name*. You can accept
 
 ![SAM setup](../images/setup8.png)
 
-If prompted to accept IAM changes, choose "Y". If prompt to deploy the changeset, choose "Y".
+- For `Confirm changes before deploy [y/N]`, enter "N".
+- For `Allow SAM CLI IAM role creation [Y/n]`, enter "Y".
+- Accept the other defaults.
 
 This will take a few minutes to deploy. You can see the deployment progress in the console. Wait until you see the `Successfully created/updated stack - serverlesspresso-backend` confirmation message in the console before continuing.
 
