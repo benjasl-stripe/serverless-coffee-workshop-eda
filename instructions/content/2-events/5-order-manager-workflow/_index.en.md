@@ -23,9 +23,9 @@ Resume the *OrderProcessor* workflow by running the *OrderManager* workflow:
 
 1. Go to the Step Functions console. From the AWS Management Console, select *Services* then select Step Functions under *Application Integration*. **Make sure your region is correct**.
 
-2. Select *State machines* from the left panel, then choose *OrderManagerWorkflow*. Choose *Start execution*.
+2. Select *State machines* from the left panel, then choose *OrderManagerStateMachine*. Choose **Start execution**.
 
-3. Enter the following into the **Input** text area and choose *Start execution*:
+3. Enter the following into the **Input** text area and choose **Start execution**:
 
 ```
 {"action":"","body":{"userId":"1","drink":"Cappuccino","modifiers":[],"icon":"barista-icons_cappuccino-alternative"},"orderId":"1","baristaUserId":"3"}

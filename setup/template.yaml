@@ -885,19 +885,25 @@ Resources:
 
 Outputs:
 
+  UserPoolID:
+    Description: UserPool ID
+    Value: !Ref UserPool
 
-  RESTApiForOrderManager:
+  UserPoolWebClientId:
+    Description: UserPool Web Client ID
+    Value: !Ref UserPoolClient
+
+  OrderManagerEndpoint:
     Description: "API Prod stage endpoint"
     Value: !Sub "https://${RESTApiForOrderManager}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
 
-  RESTApiForConfigService:
-    Description: "API Prod stage endpoint"
-    Value: !Sub "https://${RESTApConfigService}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
-
-  RESTApiForValidatorService:
+  APIGWEndpointValidatorService:
     Description: "API Prod stage endpoint"
     Value: !Sub "https://${RESTApiValidatorService}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
 
+  APIGWEndpointConfigService:
+    Description: "API Prod stage endpoint"
+    Value: !Sub "https://${RESTApConfigService}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
 
   ConfigTable:
     Value: !Ref ConfigTable
@@ -919,13 +925,8 @@ Outputs:
     Description: CoreEventBus ARN
     Value: !GetAtt ServerlesspressoEventBus.Arn
 
-  UserPoolID:
-    Description: UserPool ID
-    Value: !Ref UserPool
 
-  UserPoolClient:
-    Description: UserPool Client
-    Value: !Ref UserPoolClient
+
 
   IoTRealtimeName:
     Description: IoTRealtime Name

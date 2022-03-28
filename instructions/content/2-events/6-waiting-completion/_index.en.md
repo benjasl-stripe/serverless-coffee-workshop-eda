@@ -52,7 +52,7 @@ You will now create a new rule to route this event to a Lambda function that wil
 
 ## Review the list of rules
 
-In this section, you created 4 EventBridge rules on the Serverlesspresso event bus. On the *Rules* page, change the *Event bus* dropdown to `Serverlesspresso` and verify that you see all 4 rules listed.
+In this section, you created 4 EventBridge rules on the Serverlesspresso event bus. On the *Rules* page, change the *Event bus* dropdown to `Serverlesspresso` and verify that you see all 4 new rules listed (in addition to the 4 rules created in the setup process).
 
 ![Verify rules](../images/se-mod2-verifyRules.png)
 

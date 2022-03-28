@@ -27,12 +27,12 @@ This frontend has already been deployed and is presented as a hosted UI at https
 2. Going down the list of settings in the frontend settings page:
 - **Region**: enter the Region code you have been using during the workshop (e.g. `us-east-`).
 - **UserPoolID**: enter the value from the key `UserPoolID` from the CloudFormation stack.
-- **UserPoolWebClientID**: enter the value from the key `UserPoolClient` from the CloudFormation stack.
-- **PoolId**: enter TBD.
-- **Host**: enter TBD.
-- **OrderManagerEndpoint**: enter the value from the key `RESTApiForOrderManager` from the CloudFormation stack.
-- **APIGWEndpointValidatorService**: enter the value from the key `RESTApiForValidatorService` from the CloudFormation stack.
-- **APIGWEndpointConfigService**: enter the value from the key `RESTApiForConfigService` from the CloudFormation stack.
+- **UserPoolWebClientID**: enter the value from the key `UserPoolWebClientID` from the CloudFormation stack.
+- **PoolId**: enter the `poolId` value from *Finding the Settings* earlier..
+- **Host**: enter the `host` value from *Finding the Settings* earlier.
+- **OrderManagerEndpoint**: enter the value from the key `OrderManagerEndpoint` from the CloudFormation stack.
+- **APIGWEndpointValidatorService**: enter the value from the key `APIGWEndpointValidatorService` from the CloudFormation stack.
+- **APIGWEndpointConfigService**: enter the value from the key `APIGWEndpointConfigService` from the CloudFormation stack.
 
 ![Settings page](/images/se-mod3-frontends-barista2.png)
 

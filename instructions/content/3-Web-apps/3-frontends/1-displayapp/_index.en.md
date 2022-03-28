@@ -27,12 +27,12 @@ This frontend has already been deployed and is presented as a hosted UI at https
 2. Going down the list of settings in the frontend settings page:
 - **Region**: enter the Region code you have been using during the workshop (e.g. `us-east-`).
 - **UserPoolID**: enter the value from the key `UserPoolID` from the CloudFormation stack.
-- **UserPoolWebClientID**: enter the value from the key `UserPoolClient` from the CloudFormation stack.
-- **PoolId**: enter TBD.
-- **Host**: enter TBD.
-- **OrderManagerEndpoint**: enter the value from the key `RESTApiForOrderManager` from the CloudFormation stack.
-- **APIGWEndpointValidatorService**: enter the value from the key `RESTApiForValidatorService` from the CloudFormation stack.
-- **APIGWEndpointConfigService**: enter the value from the key `RESTApiForConfigService` from the CloudFormation stack.
+- **UserPoolWebClientID**: enter the value from the key `UserPoolWebClientID` from the CloudFormation stack.
+- **PoolId**: enter the `poolId` value from *Finding the Settings* earlier..
+- **Host**: enter the `host` value from *Finding the Settings* earlier.
+- **OrderManagerEndpoint**: enter the value from the key `OrderManagerEndpoint` from the CloudFormation stack.
+- **APIGWEndpointValidatorService**: enter the value from the key `APIGWEndpointValidatorService` from the CloudFormation stack.
+- **APIGWEndpointConfigService**: enter the value from the key `APIGWEndpointConfigService` from the CloudFormation stack.
 
 ![Settings page](/images/se-mod3-backend-display4.png)
 
@@ -40,20 +40,41 @@ This frontend has already been deployed and is presented as a hosted UI at https
 
 ![Cognito signin](/images/se-mod3-backend-display5.png)
 
-4. Select the *Create Account* tab. Enter a valid email you have access to during the workshop, together with a password. Choose **Create Account**
+## Setting up a user account
+
+The Serverlesspresso application supports bother user and admin accounts. The admin account can log into the Display and Barista apps, whereas users can only log into the Customer app. In this section, you will create an admin user to log into all apps.
+
+### Step-by-step instructions ###
+
+1. Select the *Create Account* tab. Enter a valid email you have access to during the workshop, together with a password. Choose **Create Account**
 
 ![Cognito signin completed](/images/se-mod3-backend-display6.png)
 
-5. Enter the verification code from the email and choose **Confirm**.
+2. Enter the verification code from the email and choose **Confirm**.
 
 ![Verification code](/images/se-mod3-backend-display7.png)
 
-****************
-**NOTE FOR INTERNAL TESTING GROUP**
-At this point, go to the Cognito console and add the new user to a group called "admin". The admin apps require this group membership and we've not yet had time to change it.
-****************
+3. In a separate browser tab, navigate to the [Cognito console](https://us-east-2.console.aws.amazon.com/cognito/). Choose *ServerlesspressoUserPool*.
 
-6. The Display App is now shown.
+![Cognito console](/images/s3-mod3-cognito1.png)
+
+4. Select the *Groups* tab, then choose **Create group**.
+
+![Cognito console](/images/s3-mod3-cognito2.png)
+
+5. In the *Create group* page, enter `admin` for the *Group name* and choose **Create group**.
+
+![Cognito console](/images/s3-mod3-cognito3.png)
+
+6. Selec then *Users* tab, then choose the user you created.
+
+![Cognito console](/images/s3-mod3-cognito4.png)
+
+7. In *Group memberships*, choose **Add user to group**. Select *admin* and choose **Add**.
+
+![Cognito console](/images/s3-mod3-cognito5.png)
+
+8. Go back to the browser tab showing the Display App. Log in with the user you created and the the Display App is now shown.
 
 ![Display app](/images/se-mod3-backend-display8.png)
 
